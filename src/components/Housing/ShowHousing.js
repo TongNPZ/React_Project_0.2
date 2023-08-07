@@ -1,0 +1,212 @@
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../Login/AuthContext';
+import { Dropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdDelete } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
+
+const ShowHousing = () => {
+  const Auth = useContext(AuthContext);
+  const [houses, setHouses] = useState([]);
+  const [zones, setZones] = useState([]);
+  const [selectedType, setSelectedType] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    loadHouses();
+    loadHouseTypes();
+  }, []);
+
+  const loadHouses = () => {
+    axios
+      .get('http://26.90.237.200:3000/admin/house/read')
+      .then(response => {
+        setHouses(response.data);
+        response.data.forEach(house => {
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  const loadHouseTypes = () => {
+    axios
+      .get('http://26.90.237.200:3000/admin/house_zone/read')
+      .then(response => {
+        setZones(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  const handleShowAllClick = () => {
+    axios.get('http://26.90.237.200:3000/admin/house/read')
+      .then(response => {
+        setHouses(response.data);
+        setSelectedType(null);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  const handleZoneClick = (zone) => {
+    const data = { id: zone.hz_id };
+    setSelectedType(data);
+    axios
+      .post('http://26.90.237.200:3000/admin/house/read/zone', data)
+      .then(response => {
+        setHouses(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+  const handleDeleteClick = (house) => {
+    const confirmDelete = window.confirm('คุณต้องการลบบ้านนี้หรือไม่?');
+    if (confirmDelete) {
+      const data = { id: house.h_id };
+      axios.delete(`http://26.90.237.200:3000/admin/house/delete/`, {
+        data: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          alert('ลบบ้านสำเร็จ');
+          // ดำเนินการหลังจากลบบ้านสำเร็จ (เช่น อัปเดตรายการบ้าน)
+          loadHouses(); // เรียกโหลดรายการบ้านอีกครั้งหลังจากลบ
+        })
+        .catch(error => {
+          console.error(error);
+          alert('เกิดข้อผิดพลาดในการลบบ้าน');
+        });
+    }
+  };
+
+  const detail = () => {
+    navigate(`/Planner`);
+  };
+
+  const AddBooking = (houseID) => {
+    navigate(`/AddBooking/${houseID}`);
+  };
+
+  const HousingEdit = (houseNo) => {
+    navigate(`/HousingEdit/${houseNo}`);
+  };
+
+  const statusCancel = (status) => {
+    switch (status) {
+      case 0:
+        return { message: ' ยังไม่ขาย ', colorClass: 'text-primary' };
+      case 1:
+        return { message: ' จองแล้ว ', colorClass: 'text-success' };
+      case 2:
+        return { message: ' ทำสัญญาแล้ว ', colorClass: 'text-success' };
+      case 3:
+        return { message: ' ขายแล้ว ', colorClass: 'text-danger' };
+      default:
+        return { message: ' ไม่ทราบสถานะ', colorClass: '' };
+    }
+  };
+
+  return (
+    <div className="container">
+      <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" className="btn-check" name="btnradio" id="showAll" autoComplete="off" checked={!selectedType} onChange={handleShowAllClick} />
+        <label className="btn button" style={{ backgroundColor: '#9847FF', color: '#FFFFFF' }}  htmlFor="showAll">ทั้งหมด</label>
+
+        {zones.map((zone, idx) => (
+          <React.Fragment key={idx}>
+            <input type="radio" className="btn-check" name="btnradio" id={`zone${zone.hz_id}`} autoComplete="off"
+              checked={selectedType && selectedType.id === zone.hz_id} onChange={() => handleZoneClick(zone)} />
+             &nbsp; <label className="btn button" style={{ backgroundColor: '#9847FF', color: '#FFFFFF' }} htmlFor={`zone${zone.hz_id}`}>{zone.name}</label>   &nbsp;
+          </React.Fragment>
+        ))}
+      </div>
+
+      <br />
+      {Auth.isLoggedIn && Auth.status == 1 && (
+        <div className="d-flex justify-content-end">
+          <Link to="/HousingAdd" className="btn " >เพิ่ม</Link>
+        </div>
+      )}
+      <br />
+
+      <div className="row">
+       
+        {houses.map((house, idx) => (
+          <div className="col-4" key={idx}>
+            <div className="card " >
+              <img className="card-img-top" src={house.image} alt={`House ${house.h_id}`} />
+              <div className="card-body">
+                <h5 className="card-title">บ้านเลขที่ : {house.h_id}</h5>
+                <p className="card-text">โซน : {house.name}</p>
+                <p className="card-text">แปลนบ้าน : {house.house_plan}</p>
+                <p className="card-text">ขนาดพื้นที่ดิน : {house.land_area} ตารางวา</p>
+                <p className="card-text">ขนาดพื้นที่ใช้สอย : {house.area} ตารางเมตร</p>
+                <p className="card-text">
+                  สถานะ : <span className={`fw-bold ${statusCancel(house.status).colorClass}`}>
+                    {statusCancel(house.status).message}
+                  </span>
+                </p>
+
+                {/* ข้อมูลที่ต้องการอยู่ในการเข้าสู่ระบบ */}
+                {Auth.isLoggedIn && (
+                  <div>
+                    <p className="card-text">เลขที่โฉนด : {house.num_deed}</p>
+                    <p className="card-text">เลขที่หน้าสำรวจ : {house.num_survey}</p>
+                    <p className="card-text">หมายเหตุ : {house.h_note}</p>
+                  </div>
+                )}
+
+<div className="mt-3 d-flex">
+   
+    {house.status == 0 && (
+        <button className="btn button mr-2" onClick={() => AddBooking(house.no)} > จอง </button>
+    )}
+ <button className="btn button02 mr-2" onClick={() => detail()}> ดูรายละเอียด </button>
+ 
+    {Auth.isLoggedIn && Auth.status == 1 && (
+        <>
+            {house.status == 0 && (
+                <div>
+    <Dropdown >
+      <Dropdown.Toggle variant="" className="nav-link"  id="dropdown-basic">
+          <GiHamburgerMenu size={30} style={{ color: '#9847FF' }} />
+      </Dropdown.Toggle>
+    <Dropdown.Menu>
+          <>
+          <Dropdown.Item onClick={() => HousingEdit(house.no)} >
+              <AiFillEdit size={30} style={{ color: '#9847FF' }} />แก้ไข
+        </Dropdown.Item>
+          </>
+          <Dropdown.Item onClick={() => handleDeleteClick(house)} > 
+          <MdDelete size={30}  style={{ color: '#9847FF' }}/> ลบ 
+          </Dropdown.Item>
+   
+      </Dropdown.Menu>
+    </Dropdown>
+                </div>
+            )}
+        </>
+    )}
+
+</div>
+              </div>
+            </div>
+            <br />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default ShowHousing;

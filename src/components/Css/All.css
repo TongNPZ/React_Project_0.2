@@ -1,0 +1,33 @@
+.button {
+  background-color: #9847FF;
+  color: #ffffff; /* Set the color of the text to white */
+  transition-duration: 0.4s;
+  border: 1px solid #9847FF; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button:hover {
+  background-color: #ffffff;
+  color: #9847FF; /* Set the color of the text to #9847FF when hovered */
+  border-color: #9847FF; /* Set the border color to #9847FF when hovered */
+}
+
+
+.button02 {
+  background-color: #ffffff;
+  color: #9847FF; /* Set the color of the text to #9847FF when hovered */
+  transition-duration: 0.4s;
+  border: 1px solid #9847FF; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button02:hover {
+
+  background-color: #9847FF;
+  color: #ffffff; /* Set the color of the text to #9847FF when hovered */
+  border-color: #9847FF; /* Set the border color to #9847FF when hovered */
+}
