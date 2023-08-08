@@ -211,16 +211,16 @@ const BookingCard = () => {
                               <>
                                 <div className="d-flex align-items-center mb-3">
                                   
-                                  <button className="btn button02" onClick={() => ContractDoc(book.b_id)}>
+                                  <button className="btn button08" onClick={() => ContractDoc(book.b_id)}>
                                     <BsFiletypePdf size={20} />พิมพ์สัญญา
                                   </button>
                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  <button className="btn button02 " onClick={() => ReceiptCon(book.b_id)}>
+                                  <button className="btn button08 " onClick={() => ReceiptCon(book.b_id)}>
                                     <BsFiletypePdf size={20} />พิมพ์ใบเสร็จสัญญา
                                   </button>
                                   
                                 </div>
-                                <button className="btn button mb-3" onClick={() => handleShow(book)}>
+                                <button className="btn button01 mb-3" onClick={() => handleShow(book)}>
                                   โอนกรรมสิทธิ์
                                 </button>
 
@@ -239,10 +239,10 @@ const BookingCard = () => {
                                     </Form.Group>
                                   </Modal.Body>
                                   <Modal.Footer>
-                                    <Button className="btn button" onClick={Contract}>
+                                    <Button className="btn button09" onClick={Contract}>
                                       บันทึก
                                     </Button>
-                                    <Button className="btn button02" onClick={handleClose}>
+                                    <Button className="btn button07" onClick={handleClose}>
                                       ปิด
                                     </Button>
                                   </Modal.Footer>

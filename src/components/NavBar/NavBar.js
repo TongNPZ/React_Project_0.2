@@ -51,18 +51,18 @@ const NavBar = () => {
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark " style={{ backgroundColor: '#47345F' }}>
         <div className="container-fluid">
-        {profile.map((val, idx) => (
-          <Link className="navbar-brand" to="/">
-          <img src={val.image} alt={`Logo ${val.he_id}`} width="88" height="49" />
-          </Link>
+          {profile.map((val, idx) => (
+            <Link className="navbar-brand" to="/">
+              <img src={val.image} alt={`Logo ${val.he_id}`} width="88" height="49" />
+            </Link>
           ))}
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav mx-auto">
-              <li className="nav-item">
+          <ul className="navbar-nav ms-auto">
+          <li className="nav-item me-3">
                 <Link className="nav-link" to="/">หน้าหลัก</Link>
               </li>
 

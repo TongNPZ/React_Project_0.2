@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { IoIosAddCircle } from "react-icons/io";
+import { NumericFormat } from 'react-number-format';
 
 const HousingAdd = () => {
   const navigate = useNavigate();
@@ -11,13 +12,13 @@ const HousingAdd = () => {
   const [addHousePlan, setAddHousePlan] = useState('');
   const [addNumDeed, setAddNumDeed] = useState('');
   const [addNumsurvey, setAddNumsurvey] = useState('');
-  const [addLandArea, setAddLandArea] = useState(0);
-  const [addArea, setAddArea] = useState(0);
-  const [addPrice, setAddPrice] = useState(0);
+  const [addLandArea, setAddLandArea] = useState('');
+  const [addArea, setAddArea] = useState('');
+  const [addPrice, setAddPrice] = useState('');
   const [addNote, setAddNote] = useState('');
-  const [addBookingPrice, setAddBookingPrice] = useState(0);
+  const [addBookingPrice, setAddBookingPrice] = useState('');
   const [addImage, setAddImage] = useState(null);
-  const [addidFK, setAddidFK] = useState(0);
+  const [addidFK, setAddidFK] = useState('');
   const [zones, setZones] = useState([]);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ const HousingAdd = () => {
       <div className="text-center">
         <h1>เพิ่มข้อมูลบ้าน</h1>
       </div>
-      
+
       <div className="row ">
         <div className="col-lg-7 mx-auto tex">
           <div className="card mt-2 mx-auto p-4 bg-light">
@@ -97,7 +98,7 @@ const HousingAdd = () => {
                             onChange={e => setId(e.target.value)}
                           />
                         </div>
-                        <br/>
+                        <br />
                         <div className="form-group">
                           <label htmlFor="addHousePlan">&nbsp;&nbsp;แปลนบ้าน</label>
                           <input
@@ -109,7 +110,7 @@ const HousingAdd = () => {
                             onChange={e => setAddHousePlan(e.target.value)}
                           />
                         </div>
-                        <br/>
+                        <br />
                         <div className='row'>
                           <div className='col-md-6'>
                             <div className="form-group">
@@ -129,7 +130,7 @@ const HousingAdd = () => {
                             <div className="form-group">
                               <label htmlFor="addNumsurvey">&nbsp;&nbsp;เลขที่หน้าสำรวจ</label>
                               <input
-                                type="number"
+                                type="text"
                                 className="form-control"
                                 id="addNumsurvey"
                                 maxLength="5"
@@ -138,17 +139,18 @@ const HousingAdd = () => {
                               />
                             </div>
                           </div>
+
                         </div>
-                        <br/>
+                        <br />
                         <div className='row'>
                           <div className='col-md-6'>
                             <div className="form-group">
                               <label htmlFor="addLandArea"> &nbsp;&nbsp;ขนาดพื้นที่ ตารางวา </label>
                               <input
-                                type="number"
+                                type="text"
                                 className="form-control"
                                 id="addLandArea"
-                                maxLength="25"
+                                maxLength="11"
                                 value={addLandArea}
                                 onChange={e => setAddLandArea(parseInt(e.target.value))}
                               />
@@ -158,29 +160,48 @@ const HousingAdd = () => {
                             <div className="form-group">
                               <label htmlFor="addArea"> &nbsp;&nbsp;พื้นที่ใช้สอย ตารางเมตร </label>
                               <input
-                                type="number"
+                                type="text"
                                 className="form-control"
                                 id="addArea"
-                                maxLength="25"
+                                maxLength="11"
                                 value={addArea}
                                 onChange={e => setAddArea(parseInt(e.target.value))}
                               />
                             </div>
                           </div>
                         </div>
-                        <br/>
-                        <div className="form-group">
-                          <label htmlFor="addBookingPrice"> &nbsp;&nbsp;จำนวนเงินมัดจำ </label>
-                          <input
-                            type="number"
-                            className="form-control"
-                            id="addBookingPrice"
-                            maxLength="25"
-                            value={addBookingPrice}
-                            onChange={e => setAddBookingPrice(parseInt(e.target.value))}
-                          />
+                        <br />
+                        <div className='row'>
+                          <div className='col-md-6'>
+                            <div className="form-group">
+                              <label htmlFor="addPrice"> &nbsp;&nbsp;ราคาบ้าน </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="addPrice"
+                                maxLength="15"
+                                value={addPrice}
+                                
+                                onChange={e => setAddPrice(parseInt(e.target.value))}
+                              />
+                            </div>
+
+                          </div>
+                          <div className='col-md-6'>
+                            <div className="form-group">
+                              <label htmlFor="addBookingPrice"> &nbsp;&nbsp;จำนวนเงินมัดจำ </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="addBookingPrice"
+                                maxLength="15"
+                                value={addBookingPrice}
+                                onChange={e => setAddBookingPrice(parseInt(e.target.value))}
+                              />
+                            </div>
+                          </div>
                         </div>
-                        <br/>
+                        <br />
                         <div className="form-group">
                           <label htmlFor="addNote" > &nbsp;&nbsp;หมายเหตุ <p className='text-danger'>* ไม่จำเป็นต้องใส่ก็ได้  </p></label>
                           <input
@@ -192,33 +213,33 @@ const HousingAdd = () => {
                             onChange={e => setAddNote(e.target.value)}
                           />
                         </div>
-                 
-                        <br/>
-                            <div className="form-group">
-                              <label htmlFor="addImage" > &nbsp;&nbsp;รูปภาพ </label>
-                              <input
-                                type="file"
-                                className="form-control"
-                                id="addImage"
-                                onChange={e => setAddImage(e.target.files[0])}
-                              />
-                            </div>
-                            <br/>
-                            <div className="form-group">
-                              <label htmlFor="addidFK" className="form-label " >&nbsp;&nbsp;โซนบ้าน</label>
-                              <select
-                                id="addidFK"
-                                className="form-control"
-                                value={addidFK}
-                                onChange={e => setAddidFK(parseInt(e.target.value))}
-                              >
-                                <option value="0">เลือกโซนบ้าน</option>
-                                {zones.map((zone, idx) => (
-                                  <option key={idx} value={zone.hz_id}>{zone.name}</option>
-                                ))}
-                              </select>
-                            </div>
-                   
+
+                        <br />
+                        <div className="form-group">
+                          <label htmlFor="addImage" > &nbsp;&nbsp;รูปภาพ </label>
+                          <input
+                            type="file"
+                            className="form-control"
+                            id="addImage"
+                            onChange={e => setAddImage(e.target.files[0])}
+                          />
+                        </div>
+                        <br />
+                        <div className="form-group">
+                          <label htmlFor="addidFK" className="form-label " >&nbsp;&nbsp;โซนบ้าน</label>
+                          <select
+                            id="addidFK"
+                            className="form-control"
+                            value={addidFK}
+                            onChange={e => setAddidFK(parseInt(e.target.value))}
+                          >
+                            <option value="0">เลือกโซนบ้าน</option>
+                            {zones.map((zone, idx) => (
+                              <option key={idx} value={zone.hz_id}>{zone.name}</option>
+                            ))}
+                          </select>
+                        </div>
+
 
                       </div>
                     </div>
@@ -228,7 +249,7 @@ const HousingAdd = () => {
                       <div className="col-md-12">
                         <br />
                         <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={addHouse}>
-                           เพิ่ม
+                          เพิ่ม
                         </button>
                       </div>
                     </div>
