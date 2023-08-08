@@ -65,7 +65,7 @@ const HousingAdd = () => {
     } catch (error) {
       console.error(error);
       alert('เกิดข้อผิดพลาดในเพิ่มบ้าน');
-      navigate('/Error');
+      navigate('/Housing');
     }
   };
 
@@ -181,7 +181,7 @@ const HousingAdd = () => {
                                 id="addPrice"
                                 maxLength="15"
                                 value={addPrice}
-                                
+
                                 onChange={e => setAddPrice(parseInt(e.target.value))}
                               />
                             </div>

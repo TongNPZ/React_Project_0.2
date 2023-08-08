@@ -6,6 +6,7 @@ import { Dropdown } from 'react-bootstrap';
 import { FaUser,FaHome } from 'react-icons/fa';
 import axios from 'axios';
 
+
 const NavBar = () => {
   const navigate = useNavigate();
   const Auth = useContext(AuthContext);
@@ -18,6 +19,7 @@ const NavBar = () => {
       })
       .catch(error => {
         console.error(error);
+        
       });
   
   }, []);
@@ -49,6 +51,7 @@ const NavBar = () => {
   };
   return (
     <header>
+         
       <nav className="navbar navbar-expand-lg navbar-dark " style={{ backgroundColor: '#47345F' }}>
         <div className="container-fluid">
           {profile.map((val, idx) => (
@@ -68,7 +71,7 @@ const NavBar = () => {
 
               <Dropdown >
       <Dropdown.Toggle variant="" className="nav-link"  id="dropdown-basic">
-        ดูบ้าน
+        ข้อมูลโครงการ
       </Dropdown.Toggle>
       <Dropdown.Menu>
         {Auth.status == 1 ? (

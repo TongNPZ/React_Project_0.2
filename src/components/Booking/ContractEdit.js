@@ -9,15 +9,19 @@ const ContractEdit = () => {
   const [contracts, setContract] = useState([]);
 
   const [newNumBuySale, setNewNumBuySale] = useState("");
-  const [newSubcontract, setNewSubcontract] = useState("");
-  const [newPublicService, setNewPublicService] = useState("");
+  const [newWitnessOneName, setNewWitnessOneName] = useState("");
+  const [newWitnessTwoName, setNewWitnessTwoName] = useState("");
 
   useEffect(() => {
     contractData();
-  }, [Bid]);
+  }, []);
+
 
   const contractData = () => {
-    axios.get('http://26.90.237.200:3000/contract/read')
+    const data = {
+      id: Bid
+    }
+    axios.post('http://26.90.237.200:3000/contract/read/id', data)
       .then(response => {
         // const contract = response.data.find(contract => contract[0]?.b_id === Bid);
         setContract(response.data);
@@ -33,19 +37,18 @@ const ContractEdit = () => {
   // }
   const Edit = async () => {
     const data = {
-      newBookFK: Bid,
-      newNumBuySale: newNumBuySale,
-      newSubcontract: newSubcontract,
-      newPublicService: newPublicService,
+      id: Bid,
+      newNumBuySale: newNumBuySale || contracts[0]?.num_buySale,
+      newWitnessOneName: newWitnessOneName || contracts[0]?.witnessone_name,
+      newWitnessTwoName: newWitnessTwoName || contracts[0]?.witnesstwo_name,
     };
-     console.log(data)
 
     // ถามผู้ใช้ก่อนทำการแก้ไข
     const confirmUpdate = window.confirm("คุณต้องการทำการเพิ่มข้อมูลหรือไม่?");
 
     if (confirmUpdate) {
       try {
-        const response = await axios.post(User_API, data);
+        const response = await axios.patch(User_API, data);
         console.log(response.data);
 
         // แจ้งเตือนเมื่อแก้ไขเสร็จสิ้น
@@ -56,7 +59,7 @@ const ContractEdit = () => {
 
         // แจ้งเตือนเมื่อเกิดข้อผิดพลาดในการแก้ไขข้อมูล
         window.alert("เกิดข้อผิดพลาดเพิ่มข้อมูล");
-        navigate("/Error");
+        navigate("/Booking");
       }
     }
   };
@@ -72,28 +75,28 @@ const ContractEdit = () => {
               <input
                 type="text"
                 className="form-control"
-                value={newNumBuySale}
+                value={newNumBuySale || contracts[0]?.num_buySale}
                 onChange={(e) => setNewNumBuySale(e.target.value)}
               />
             </div>
          
             <div className="form-group">
-              <label>เลขที่สัญญาจ้างเหมา</label>
+              <label>ชื่อพยานคนที่หนึ่ง</label>
               <input
                 type="text"
                 className="form-control"
-                value={newSubcontract }
-                onChange={(e) => setNewSubcontract(e.target.value)}
+                value={newWitnessOneName  || contracts[0]?.witnessone_name}
+                onChange={(e) => setNewWitnessOneName(e.target.value)}
               />
             </div>
 
             <div className="form-group">
-              <label>เลขที่สัญญาสาธารณูปโภค</label>
+              <label>ชื่อพยานคนที่สอง</label>
               <input
                 type="text"
                 className="form-control"
-                value={newPublicService }
-                onChange={(e) => setNewPublicService(e.target.value)}
+                value={newWitnessTwoName || contracts[0]?.witnesstwo_name}
+                onChange={(e) => setNewWitnessTwoName(e.target.value)}
               />
             </div>
             

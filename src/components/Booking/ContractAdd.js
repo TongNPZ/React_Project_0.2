@@ -152,7 +152,7 @@ const ContractAdd = () => {
             <br />
           </div>
         
-        <button type="button" className="btn btn-primary" onClick={Contract}>
+        <button type="button" className="btn button01" onClick={Contract}>
           ยืนนันการทำสัญญา
         </button>
         <br/>

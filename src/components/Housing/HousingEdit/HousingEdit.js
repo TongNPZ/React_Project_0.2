@@ -78,12 +78,14 @@ const HousingEdit = () => {
             }
           }
         );
-        console.log(response.data);
+        alert('แก้ไขสำเร็จ');
         navigate('/Housing');
       }
     } catch (error) {
       console.error(error);
-      navigate('/Error');
+      alert('แก้ไขไม่สำเร็จ');
+
+      navigate('/Housing');
     }
   };
 
@@ -262,8 +264,8 @@ const HousingEdit = () => {
 
                           <div className="col-md-12">
                             <br />
-                            <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={EditHouse}>
-                            แก้ไข
+                            <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={EditHouse}>
+                            &nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;
                             </button>
                           </div>
                         </div>

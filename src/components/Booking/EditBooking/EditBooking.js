@@ -13,13 +13,6 @@ const EditBooking = () => {
   const [newNote, setNewNote] = useState("");
   const [books, setBooks] = useState([]);
 
-
-  // "id": 189,
-  //   "newDateContract": "2023-07-22",
-  //   "newNote": "",
-  //   "newHouseFK": "44/26",
-  //   "newUserFK": "1459900857404"
-
   useEffect(() => {
     loadBookingData();
   }, []);
