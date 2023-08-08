@@ -1,4 +1,8 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Carousel } from 'react-bootstrap';
+
+
 
 const Homepage = () => {
   const divStyle = {
@@ -43,16 +47,40 @@ const Homepage = () => {
         <h1>พวงเพชร 4</h1>
         <h2>“พวกเพชร บ้านเลอค่าดุจอัญมณี”</h2>
       </div>
+      <div id="demo" className="carousel slide" data-bs-ride="carousel">
+<div className="carousel-indicators">
+  <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
+  <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+  <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+</div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<h2 className="ssr-section-header text-center">ตัวอย่างบ้าน</h2>
+<br></br>
+<Carousel>
+  <Carousel.Item>
+    <img src="/image/home3.png" alt="รูปภาพ" className="d-block"  />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img src="/image/home3.png" alt="รูปภาพ" className="d-block" />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img src="/image/home3.png" alt="รูปภาพ" className="d-block"  />
+  </Carousel.Item>
+</Carousel>
+
+</div>
+
+
 
       {/* ส่วนของแนวคิดโครงการ */}
       <div className="ssr-header">
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
         <h2 className="ssr-section-header text-center">แนวคิดโครงการ</h2>
-        <br></br>
-        <br></br>
         <br></br>
       </div>
       <div className="ssr-imgtxt-container imgtxt-1col" style={{ display: 'grid', placeItems: 'center' }}>
@@ -60,7 +88,7 @@ const Homepage = () => {
           <div className="row">
             <div className="ssr-box-imgtxt col-lg-30 ssr-box-imgtxt-custom-ab5a4c49-4f15-4371-894e-964f20773205">
               {/* ส่วนของรูปภาพ */}
-              <img src="/image/zx.jpg" alt="รูปภาพ" />
+              <img src="/image/homepag.png" alt="รูปภาพ" />
             </div>
             <div className="ssr-txt-body text-center">
               <div className="ssr-body-inner">
@@ -80,7 +108,7 @@ const Homepage = () => {
                   <div className="col-md-12 column">
                     <div className="container">
                       <div className="ssr-header">
-                        <h2 className="ssr-section-header text-center">ที่ตั้งโครงไก่</h2>
+                        <h2 className="ssr-section-header text-center">ที่ตั้งโครงการ</h2>
 
                         <iframe
                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.4706591337053!2d102.79484677514411!3d16.451688884284618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x312261dc935121f9%3A0xc255b3873a211c67!2z4Lir4Lih4Li54LmI4Lia4LmJ4Liy4LiZ4Lie4Lin4LiH4LmA4Lie4LiK4LijIDQ!5e0!3m2!1sth!2sth!4v1691449052568!5m2!1sth!2sth"
@@ -108,7 +136,9 @@ const Homepage = () => {
         </table>
         {/* <button style={buttonStyle}>เข้าเยี่ยมชม</button> */}
       </div>
-    </div>
+      </div>
+
+
   );
 };
 

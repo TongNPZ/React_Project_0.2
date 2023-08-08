@@ -1,8 +1,9 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Login/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { AiFillEdit } from 'react-icons/ai';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -23,54 +24,68 @@ const Users = () => {
     switch (status_authen) {
       case 2:
         return { message: ' ลูกค้า ', colorClass: 'text-primary' };
-        case 3:
-          return { message: ' ลูกบ้าน ', colorClass: 'text-success' };
+      case 3:
+        return { message: ' ลูกบ้าน ', colorClass: 'text-success' };
       default:
         return { message: ' ไม่ทราบสถานะ', colorClass: '' };
     }
   };
 
-  
   const EditUser = (UserID) => {
     navigate(`/EditUser/${UserID}`);
   };
 
   return (
     <div className="container">
-        <h1>ข้อมูลผู้ลูกค้า</h1>
-      <div>
-        {users.map((user, idx) => (
-          <div className="card" key={idx}>
+      <h1>ข้อมูลลูกค้า</h1>
+      <div className="table-responsive">
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>เลขบัตรประชาชน</th>
+              <th>ชื่อ</th>
+              <th>นามสกุล</th>
+              <th>ที่อยู่</th>
+              <th>อายุ</th>
+              <th>เบอร์โทร</th>
+              <th>ที่อยู่อีเมล</th>
+              <th>สัญชาติ</th>
+              <th>สถานะ</th>
               {Auth.isLoggedIn && (
-                <div className="d-flex justify-content-end">
-
-                  <button className="btn button" onClick={() => EditUser(user.user_id)}>
-                      แก้ไข
-                    </button>
-                </div>
-            )}
-            <div className="content">
-              <p>เลขบัตรประชาชน : {user.user_id}</p>
-              <p>ชื่อ : {user.user_name} </p>
-              <p>นามสกุล : {user.user_lastname}</p>
-              <p>ที่อยู่: {user.user_address}</p>
-              <p>อายุ : {user.user_age}</p>
-              <p>เบอร์โทร : {user.user_phone}</p>
-              <p>ที่อยู่อีเมล : {user.user_email}</p>
-              <p>สัญชาติ : {user.nationality}</p>
-              <p className="card-text">
-                  สถานะ : <span className={`fw-bold ${statusUser(user.status_authen).colorClass}`}>
+                <th>
+                  <AiFillEdit size={30} style={{ color: '#2E3136' }} />
+                  แก้ไข
+                </th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user, idx) => (
+              <tr key={idx}>
+                <td>{user.user_id}</td>
+                <td>{user.user_name}</td>
+                <td>{user.user_lastname}</td>
+                <td>{user.user_address}</td>
+                <td>{user.user_age}</td>
+                <td>{user.user_phone}</td>
+                <td>{user.user_email}</td>
+                <td>{user.nationality}</td>
+                <td>
+                  <span className={`fw-bold ${statusUser(user.status_authen).colorClass}`}>
                     {statusUser(user.status_authen).message}
                   </span>
-                </p>
-            </div>
-            <div className="content">
-              <br />
-              <br />
-              <br />
-            </div>
-          </div>
-        ))}
+                </td>
+                {Auth.isLoggedIn && (
+                  <td>
+                    <button className="btn button09" onClick={() => EditUser(user.user_id)}>
+                      แก้ไข
+                    </button>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
