@@ -93,6 +93,10 @@ const ShowHousing = () => {
     navigate(`/Planner`);
   };
 
+  const HousingAdd = () => {
+    navigate(`/HousingAdd`);
+  };
+
   const AddBooking = (houseID) => {
     navigate(`/AddBooking/${houseID}`);
   };
@@ -132,11 +136,16 @@ const ShowHousing = () => {
       </div>
 
       <br />
-      {Auth.isLoggedIn && Auth.status == 1 && (
-        <div className="d-flex justify-content-end">
-          <Link to="/HousingAdd" className="btn " >เพิ่ม</Link>
-        </div>
-      )}
+     {
+  Auth.isLoggedIn && Auth.status == 1 && (
+    <div className="d-flex justify-content-end">
+      <button className="btn button06 mr-2" onClick={() => HousingAdd()}>
+        เพิ่ม
+      </button>
+    </div>
+  )
+}
+
       <br />
 
       <div className="row">
@@ -167,11 +176,10 @@ const ShowHousing = () => {
                 )}
 
 <div className="mt-3 d-flex">
-   
     {house.status == 0 && (
-        <button className="btn button mr-2" onClick={() => AddBooking(house.no)} > จอง </button>
+        <button className="btn button09 mr-2" onClick={() => AddBooking(house.no)} > จอง </button>
     )}
- <button className="btn button02 mr-2" onClick={() => detail()}> ดูรายละเอียด </button>
+ <button className="btn button08 mr-2" onClick={() => detail()}> ดูรายละเอียด </button>
  
     {Auth.isLoggedIn && Auth.status == 1 && (
         <>
@@ -179,16 +187,16 @@ const ShowHousing = () => {
                 <div>
     <Dropdown >
       <Dropdown.Toggle variant="" className="nav-link"  id="dropdown-basic">
-          <GiHamburgerMenu size={30} style={{ color: '#9847FF' }} />
+          <GiHamburgerMenu size={30} />
       </Dropdown.Toggle>
     <Dropdown.Menu>
           <>
           <Dropdown.Item onClick={() => HousingEdit(house.no)} >
-              <AiFillEdit size={30} style={{ color: '#9847FF' }} />แก้ไข
+              <AiFillEdit size={30} style={{ color: '#ffa600' }} />แก้ไข
         </Dropdown.Item>
           </>
           <Dropdown.Item onClick={() => handleDeleteClick(house)} > 
-          <MdDelete size={30}  style={{ color: '#9847FF' }}/> ลบ 
+          <MdDelete size={30}  style={{ color: '#b42828' }}/> ลบ 
           </Dropdown.Item>
    
       </Dropdown.Menu>

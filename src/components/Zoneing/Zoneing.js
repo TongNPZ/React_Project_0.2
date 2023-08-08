@@ -3,6 +3,8 @@ import axios from 'axios';
 import { AuthContext } from '../Login/AuthContext';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
 
 const Zoneing = () => {
   const Auth = useContext(AuthContext);
@@ -55,7 +57,7 @@ const Zoneing = () => {
       
       {Auth.isLoggedIn && Auth.status == 1 && (
         <div className="d-flex justify-content-end">
-          <button className="btn " style={{ backgroundColor: '#9847FF', color: '#FFFFFF' }} onClick={() => { navigate('/ZoneAdd'); }}>เพิ่ม</button>
+          <button className="btn button06" onClick={() => { navigate('/ZoneAdd'); }}>เพิ่ม</button>
         </div>
       )}
 
@@ -71,12 +73,12 @@ const Zoneing = () => {
                   <div className="mt-3 d-flex">
                    
                   
-                    <button className="btn button02" onClick={() => handleDeleteClick(zone)}>
-                      ลบ
+                    <button className="btn button07" onClick={() => handleDeleteClick(zone)}>
+                     <MdDelete size={30} /> ลบ
                     </button>
 
-                    <button className="btn button" onClick={() => ZoneEdit(zone.hz_id)}>
-                      แก้ไข
+                    <button className="btn button04" onClick={() => ZoneEdit(zone.hz_id)}>
+                    <AiFillEdit size={30}  /> แก้ไข
                     </button>
 
                   </div>

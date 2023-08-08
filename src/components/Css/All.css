@@ -14,6 +14,23 @@
   border-color: #9847FF; /* Set the border color to #9847FF when hovered */
 }
 
+.button01 {
+  background-color: #28b428;
+  color: #ffffff; /* กำหนดสีข้อความเป็นสีขาว */
+  transition-duration: 0.4s;
+  border: 1px solid #28b428; /* เพิ่มเส้นขอบ */
+  display: flex;
+  border-radius: 20px;
+  margin: auto; /* เพิ่มคำสั่งนี้เพื่อจัดตำแหน่งไปทางขวา */
+}
+
+
+.button01:hover {
+  background-color: #ffffff;
+  color: #28b428; /* Set the color of the text to #9847FF when hovered */
+  border-color: #28b428; /* Set the border color to #9847FF when hovered */
+}
+
 
 .button02 {
   background-color: #ffffff;
@@ -30,4 +47,125 @@
   background-color: #9847FF;
   color: #ffffff; /* Set the color of the text to #9847FF when hovered */
   border-color: #9847FF; /* Set the border color to #9847FF when hovered */
+}
+
+.button03 {
+  background-color: #ffffff;
+  color: #ffa600; /* Set the color of the text to #9847FF when hovered */
+  transition-duration: 0.4s;
+  border: 1px solid #ffa600; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button03:hover {
+
+  background-color: #ffa600;
+  color: #ffffff; /* Set the color of the text to #9847FF when hovered */
+  border-color: #ffa600; /* Set the border color to #9847FF when hovered */
+}
+
+.button04 {
+  background-color: #ffa600;
+  color: #ffffff; /* Set the color of the text to white */
+  transition-duration: 0.4s;
+  border: 1px solid #ffa600; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button04:hover {
+  background-color: #ffffff;
+  color: #ffa600; /* Set the color of the text to #9847FF when hovered */
+  border-color: #ffa600; /* Set the border color to #9847FF when hovered */
+}
+
+.button05 {
+  background-color: #ffffff;
+  color: #28b428; /* Set the color of the text to #9847FF when hovered */
+  transition-duration: 0.4s;
+  border: 1px solid #28b428; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button05:hover {
+
+  background-color: #28b428;
+  color: #ffffff; /* Set the color of the text to #9847FF when hovered */
+  border-color: #28b428; /* Set the border color to #9847FF when hovered */
+}
+
+.button06 {
+  background-color: #28b428;
+  color: #ffffff; /* กำหนดสีข้อความเป็นสีขาว */
+  transition-duration: 0.4s;
+  border: 1px solid #28b428; /* เพิ่มเส้นขอบ */
+  display: flex;
+  border-radius: 20px;
+  margin-left: auto; /* เพิ่มคำสั่งนี้เพื่อจัดตำแหน่งไปทางขวา */
+}
+
+
+.button06:hover {
+  background-color: #ffffff;
+  color: #28b428; /* Set the color of the text to #9847FF when hovered */
+  border-color: #28b428; /* Set the border color to #9847FF when hovered */
+}
+
+.button07 {
+  background-color: #ffffff;
+  color: #b42828; /* Set the color of the text to #9847FF when hovered */
+  transition-duration: 0.4s;
+  border: 1px solid #b42828; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button07:hover {
+
+  background-color: #b42828;
+  color: #ffffff; /* Set the color of the text to #9847FF when hovered */
+  border-color: #b42828; /* Set the border color to #9847FF when hovered */
+}
+
+.button08 {
+  background-color: #ffffff;
+  color: #1088d8; /* Set the color of the text to #9847FF when hovered */
+  transition-duration: 0.4s;
+  border: 1px solid #1088d8; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button08:hover {
+
+  background-color: #1088d8;
+  color: #ffffff; /* Set the color of the text to #9847FF when hovered */
+  border-color: #1088d8; /* Set the border color to #9847FF when hovered */
+}
+
+.button09 {
+  background-color: #1088d8;
+  color: #ffffff; /* Set the color of the text to white */
+  transition-duration: 0.4s;
+  border: 1px solid #1088d8; /* Add a border */
+  margin: auto;
+  display: flex;
+  border-radius: 20px;
+}
+
+.button09:hover {
+  background-color: #ffffff;
+  color: #1088d8; /* Set the color of the text to #9847FF when hovered */
+  border-color: #1088d8; /* Set the border color to #9847FF when hovered */
+}
+
+.text-left {
+  text-align: left !important;
 }

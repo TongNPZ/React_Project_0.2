@@ -47,9 +47,9 @@ const AdminProfile = () => {
 
               {Auth.isLoggedIn && Auth.status == 1 && (
                 <div> 
-                  <button className="btn btn-warning" onClick={() => { navigate('/AdminProfileEdit'); }}>แก้ไขขอมูล</button>
+                  <button className="btn button04" onClick={() => { navigate('/AdminProfileEdit'); }}> แก้ไขขอมูล</button>
                       &nbsp;
-                  <button className="btn btn-warning" onClick={() => { navigate(`/AdminUsePassEdit/${val.he_id}`); }}>แก้ไขรหัสผ่าน</button>
+                  <button className="btn button04" onClick={() => { navigate(`/AdminUsePassEdit/${val.he_id}`); }}>แก้ไขรหัสผ่าน</button>
                 </div>
               )}
 
