@@ -80,7 +80,7 @@ const Homepage = () => {
                   <div className="col-md-12 column">
                     <div className="container">
                       <div className="ssr-header">
-                        <h2 className="ssr-section-header text-center">ที่ตั้งโครงการ</h2>
+                        <h2 className="ssr-section-header text-center">ที่ตั้งโครงไก่</h2>
 
                         <iframe
                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.4706591337053!2d102.79484677514411!3d16.451688884284618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x312261dc935121f9%3A0xc255b3873a211c67!2z4Lir4Lih4Li54LmI4Lia4LmJ4Liy4LiZ4Lie4Lin4LiH4LmA4Lie4LiK4LijIDQ!5e0!3m2!1sth!2sth!4v1691449052568!5m2!1sth!2sth"
