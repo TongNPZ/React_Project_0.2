@@ -8,7 +8,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 
-
 const ShowHousing = () => {
   const Auth = useContext(AuthContext);
   const [houses, setHouses] = useState([]);
@@ -19,6 +18,7 @@ const ShowHousing = () => {
   useEffect(() => {
     loadHouses();
     loadHouseTypes();
+
   }, []);
 
   const loadHouses = () => {
@@ -39,6 +39,7 @@ const ShowHousing = () => {
       .get('http://26.90.237.200:3000/admin/house_zone/read')
       .then(response => {
         setZones(response.data);
+
       })
       .catch(error => {
         console.error(error);
@@ -59,8 +60,7 @@ const ShowHousing = () => {
   const handleZoneClick = (zone) => {
     const data = { id: zone.hz_id };
     setSelectedType(data);
-    axios
-      .post('http://26.90.237.200:3000/admin/house/read/zone', data)
+    axios.post('http://26.90.237.200:3000/admin/house/read/zone', data)
       .then(response => {
         setHouses(response.data);
       })
@@ -68,6 +68,8 @@ const ShowHousing = () => {
         console.error(error);
       });
   };
+
+  console.log(selectedType)
   const handleDeleteClick = (house) => {
     const confirmDelete = window.confirm('คุณต้องการลบบ้านนี้หรือไม่?');
     if (confirmDelete) {
@@ -123,11 +125,17 @@ const ShowHousing = () => {
     }
   };
 
+  const getZoneName = (hz_id) => {
+    const matchedZone = zones.find(zone => zone.hz_id === hz_id);
+    return matchedZone ? matchedZone.name : 'ไม่มีโซน';
+  }
+  
+
   return (
     <div className="container">
       <div className="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" className="btn-check" name="btnradio" id="showAll" autoComplete="off" checked={!selectedType} onChange={handleShowAllClick} />
-        <label className="btn button" style={{ backgroundColor: '#9847FF', color: '#FFFFFF' }} htmlFor="showAll">ทั้งหมด</label>
+        <label className="btn button" style={{ backgroundColor: '#9847FF', color: '#FFFFFF' }} htmlFor="showAll">ทั้งหมด</label>&nbsp;
 
         {zones.map((zone, idx) => (
           <React.Fragment key={idx}>
@@ -137,25 +145,13 @@ const ShowHousing = () => {
           </React.Fragment>
         ))}
       </div>
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <ToastContainer /> */}
+
       <br />
       {
         Auth.isLoggedIn && Auth.status == 1 && (
           <div className="d-flex justify-content-end">
             <button className="btn button06 mr-2" onClick={() => HousingAdd()}>
-              เพิ่ม
+            &nbsp;&nbsp; เพิ่ม  &nbsp;&nbsp;
             </button>
           </div>
         )
@@ -172,7 +168,7 @@ const ShowHousing = () => {
               <div className="card-body">
                 <h5 className="card-title">บ้านเลขที่ : {house.h_id}</h5>
                 <div className='text-left'>
-                  <p className="card-text">โซน : {house.name}</p>
+                  <p className="card-text">โซน : {getZoneName(house.hz_id)}</p>
                   <p className="card-text">แปลนบ้าน : {house.house_plan}</p>
                   <p className="card-text">ขนาดพื้นที่ดิน : {house.land_area} ตารางวา</p>
                   <p className="card-text">ขนาดพื้นที่ใช้สอย : {house.area} ตารางเมตร</p>
@@ -191,8 +187,14 @@ const ShowHousing = () => {
                   )}
                 </div>
                 <div className="mt-3 d-flex">
+
                   {house.status == 0 && (
-                    <button className="btn button06 mr-2" onClick={() => AddBooking(house.no)} > &nbsp;&nbsp;&nbsp;&nbsp;จอง&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    <div className=''>
+                      {Auth.isLoggedIn && Auth.status == 1 && (
+                        <button className="btn button06 mr-2" onClick={() => AddBooking(house.no)} >
+                          &nbsp;&nbsp;&nbsp;&nbsp;จอง&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                      )}
+                    </div>
                   )}
                   <button className="btn button09 mr-2" onClick={() => detail()}> ดูรายละเอียด </button>
 

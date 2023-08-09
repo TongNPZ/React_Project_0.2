@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 dayjs.extend(customParseFormat);
 dayjs.locale('th'); 
 
-const ReceiptCon = () => {
+const ContractDoc = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [houses, setHouse] = useState([]);
@@ -115,8 +115,8 @@ const ReceiptCon = () => {
       const priceInThai_1 = thaiBahtText(relatedHouse.book_price);
       const priceInThai_2 = thaiBahtText(relatedHouse.h_price);
       const priceInThai_3 = thaiBahtText(relatedCon.remaining_amount);
-      const bookingDate = relatedCon.date && dayjs(relatedbook.date_contract).add(543, 'year').format('DD MMMM YYYY');
-      const bookingDate1 = relatedCon.date && dayjs(relatedbook.date_contract).add(543, 'year').format('DD/MM/YYYY');
+      const bookingDate = relatedCon.date && dayjs(relatedbook.date).add(543, 'year').format('DD MMMM YYYY');
+      const bookingDate1 = relatedCon.date && dayjs(relatedbook.date).add(543, 'year').format('DD/MM/YYYY');
 
       page.drawText(` ${bookingDate} `, { x: 265, y: y - 54, size: 15, font, color: rgb(0, 0, 0), });
 
@@ -142,7 +142,6 @@ const ReceiptCon = () => {
       page.drawText(` ${relatedUser.user_address}`, { x: 325, y: y - 154, size: 15, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedUser.user_phone}`, { x: 163, y: y - 174, size: 15, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedUser.user_id}`, { x: 320, y: y - 174, size: 15, font, color: rgb(0, 0, 0), });
-
 
       page.drawText(` ${relatedHouse.num_deed}`, { x: 368, y: y - 234, size: 15, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedHouse.num_survey}`, { x: 451, y: y - 234, size: 15, font, color: rgb(0, 0, 0), });
@@ -194,4 +193,4 @@ const ReceiptCon = () => {
   );
 };
 
-export default ReceiptCon;
+export default ContractDoc;

@@ -17,10 +17,16 @@ const AddBooking = () => {
   const [addHouseFK, setAddHouseFK] = useState('');
   const [addUserFK, setAddUserFK] = useState('');
   const [addNationality, setAddNationality] = useState('');
-  const [addDateContract, setAddDateContract] = useState('');
+  // const [addDateContract, setAddDateContract] = useState('');
   const [addNote, setAddNote] = useState('');
 
   const [houses, setHouses] = useState([]);
+
+  
+  const Cancel = () => {
+    navigate(`/Housing`);
+  };
+
 
   useEffect(() => {
     loadHouse();
@@ -40,7 +46,7 @@ const AddBooking = () => {
 
   const AddBook = async () => {
 
-    if (!addName || !addLastname || !addAddress || !addAge || !addPhone || !addHouseFK || !addUserFK || !addNationality || !addDateContract) {
+    if (!addName || !addLastname || !addAddress || !addAge || !addPhone || !addHouseFK || !addUserFK || !addNationality) {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;
     }
@@ -66,7 +72,6 @@ const AddBooking = () => {
       addHouseFK: addHouseFK,
       addUserFK: addUserFK,
       addNationality: addNationality,
-      addDateContract: addDateContract,
       addNote: addNote,
     };
 
@@ -75,24 +80,30 @@ const AddBooking = () => {
       alert('ทำการจองสำเร็จแล้ว');
 
       // ทำการ navigate ไปยังหน้า Receipt พร้อมกับส่งค่า addedBookData ไปด้วย
-      navigate(`/PreReceipt/${response.data.id}`); //ใบเสนอราคา
+      // navigate(`/PreReceipt/${response.data.id}`); //ใบเสนอราคา
+      navigate(`/booking`); //ใบเสนอราคา
     } catch (error) {
       console.error(error);
       alert('ทำการจองผิดพลาด');
     }
   };
 
+  const inSevenDays = new Date();
+  inSevenDays.setDate(inSevenDays.getDate() + 7);
+  const maxDate = inSevenDays.toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
+
   return (
 
-    <div className="container mt-4">
+    <div className="container mt-4 ">
       <h1 className="text-center mb-4">เพิ่มการจอง</h1>
 
       <div className="row d-flex">
 
-        <div className="col-lg-6">
-          <div className="card">
+        <div className="col-lg-6  ">
+          <div className="card ">
             <div className="card-header bg-success text-white">ข้อมูลลูกค้า</div>
-            <div className="card-body text-left">
+            <div className="card-body text-left ">
               <div className="mb-3">
                 <label htmlFor="id" className="form-label">&nbsp;&nbsp;เลขบัตรประชาชน</label>
                 <input type="text" className="form-control" maxLength="13" id="id" value={addUserFK} onChange={(e) => setAddUserFK(e.target.value)} />
@@ -131,20 +142,39 @@ const AddBooking = () => {
                 <label htmlFor="addNote" className="form-label">&nbsp;&nbsp;หมายเหตุ</label>
                 <input type="text" className="form-control" id="addNote" maxLength="250" value={addNote} onChange={(e) => setAddNote(e.target.value)} />
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <label htmlFor="addDateContract" className="form-label">&nbsp;&nbsp;กำหนดวันทำสัญญา</label>
-                <input type="date" className="form-control" id="addDateContract" value={addDateContract} onChange={(e) => setAddDateContract(e.target.value)} />
-              </div>
-              <br />
+                <input type="date" className="form-control" id="addDateContract" value={addDateContract} min={today} max={maxDate} onChange={(e) => setAddDateContract(e.target.value)} required />
+              </div> */}
+              <br />    <br />
               <div className="text-center mt-3">
                 {/* <Link onClick={AddBook} className="btn button01">จอง</Link> */}
-                <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={AddBook}>
-                &nbsp;&nbsp;&nbsp;&nbsp;จอง&nbsp;&nbsp;&nbsp;&nbsp;
-                </button>
+              
               </div>
-              <br />
+
+
+              <div className="row">
+                      <div className="col-md-12">
+                        <br />
+                        <div className="row">
+                          <div className="col-md-6">
+                            <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={AddBook}>
+                              &nbsp;&nbsp;จอง&nbsp;&nbsp;
+                            </button>
+                          </div>
+                          <div className="col-md-6">
+                            <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                              ยกเลิก
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+              <br />    <br />    <br />    <br />
             </div>
-            
+
           </div>
         </div>
 
@@ -155,14 +185,25 @@ const AddBooking = () => {
               <div>
                 <img className="card-img-top" src={house.image} alt={`House ${house.h_id}`} />
                 <div className="card-body text-left">
-                  <div className='row'>
-                    <div className='col-6' key={idx}>
-                      <p>บ้านเลขที่: </p>{house.h_id}
-                      <p>แปลนบ้าน: {house.house_plan}</p>
-                      <p>เลขที่โฉนด: {house.num_deed}</p>
-                      <p>เลขที่หน้าสำรวจ: {house.num_survey}</p>
-                      <p>ขนาดพื้นที่ดิน: {house.land_area} ตารางวา</p>
-                      <p>ขนาดพื้นที่ใช้สอย: {house.area} ตารางเมตร</p>
+                  <div className='row bg-light'>
+                    <div className='col-4' key={idx}>
+                      <p>บ้านเลขที่  </p>
+                      <p>แปลนบ้าน   </p>
+                      <p>เลขที่โฉนด  </p>
+                      <p>เลขที่หน้าสำรวจ  </p>
+                      <p>ขนาดพื้นที่ดิน   </p>
+                      <p>ขนาดพื้นที่ใช้สอย </p>
+                      <p>ราคาบ้าน</p>
+                      <p> ราคาจอง</p>
+                      <p>หมายเหตุ</p>
+                    </div>
+                    <div className='col-8 ' key={idx}>
+                      <p>{house.h_id}</p>
+                      <p>{house.house_plan}</p>
+                      <p>{house.num_deed}</p>
+                      <p>{house.num_survey}</p>
+                      <p>{house.land_area} ตารางวา</p>
+                      <p> {house.area} ตารางเมตร</p>
                       <NumericFormat
                         value={house.h_price}
                         allowLeadingZeros
@@ -177,10 +218,7 @@ const AddBooking = () => {
                         displayType="text"
                         renderText={(value) => <p> ราคาจอง {value} บาท</p>}
                       />
-                      <p>หมายเหตุ: {house.h_note}</p>
-                    </div>
-                    <div className='col-6' key={idx}>
-
+                      <p> {house.h_note}</p>
                     </div>
                   </div>
                 </div>

@@ -15,7 +15,7 @@ import img from './ex.png'
 dayjs.extend(customParseFormat);
 dayjs.locale('th');
 
-const Receipt = () => {
+const ReceiptRemain = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [houses, setHouse] = useState([]);
@@ -109,10 +109,10 @@ const Receipt = () => {
       const month = date.format('MMMM');
       const year = parseInt(date.format('YYYY')) + 543;
       let thaiBahtText = require('thai-baht-text');
-      let priceInThai = thaiBahtText(relatedContract.down_amount);
+      let priceInThai = thaiBahtText(relatedContract.remaining_amount);
       page.drawText(` ${relatedUser.user_name}  ${relatedUser.user_lastname}`, { x: 110, y: y - 589, size: 9, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedHouse.h_id}`, { x: 348, y: y - 618, size: 9, font, color: rgb(0, 0, 0), });
-      page.drawText(` ${relatedContract.down_amount.toLocaleString()} `, { x: 110, y: y - 676, size: 9, font, color: rgb(0, 0, 0), });
+      page.drawText(` ${relatedContract.remaining_amount.toLocaleString()} `, { x: 110, y: y - 676, size: 9, font, color: rgb(0, 0, 0), });
       page.drawText(` ${priceInThai} `, { x: 285, y: y - 677, size: 9, font, color: rgb(0, 0, 0), });
       page.drawText(` ${day}    ${month}    ${year}`, { x: 285, y: y - 574, size: 9, font, color: rgb(0, 0, 0), });
       page.drawText(` ${profile[0].manager_name}  ${profile[0].manager_lastname}`, { x: 100, y: y - 724, size: 9, font, color: rgb(0, 0, 0), });
@@ -128,14 +128,13 @@ const Receipt = () => {
       // Embed รูปภาพลงในไฟล์ PDF
       const image = await pdfDoc.embedPng(imageBytes);
       // วาดรูปภาพลงในหน้า PDF
-      page.drawImage(image, { x: 107, y: y - 636, width: 9, height: 9 });
+      page.drawImage(image, { x: 333, y: y - 636, width: 9, height: 9 });
       page.drawImage(image, { x: 61, y: y - 653, width: 9, height: 9 });
 
       const pdfBytes = await pdfDoc.save();
       const pdfUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
       window.open(pdfUrl, 'blank');
-      // navigate('/Booking');
-      
+      navigate('/Booking');
     } catch (error) {
       console.error(error);
     }
@@ -150,59 +149,79 @@ const Receipt = () => {
     <div className="container">
       <br />
       <div>
-        <h1> ใบเสร็จสัญญา </h1>
-        {books.map((book) => (
-          <div className="card" key={book.b_id}>
-            <div className="content">
-              <p>เลขการจอง : {book.b_id}</p>
-              {/* แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง */}
-              {users.length > 0 ? (
-                users.map((user) => (
-                  // แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง
-                  <div key={user.id}>
-                    <p>ชื่อ-สกุล : {user.user_name} {user.user_lastname}</p>
-                    <p >เบอร์โทร : {user.user_phone}</p>
-                    <p>อายุ : {user.user_age}</p>
-                  </div>
-                ))) : (<p>ไม่พบข้อมูลผู้ใช้</p>)}
+        <h1> ใบเสร็จเงินส่วนที่เหลือ </h1>
+        <div className='row'>
+          <div className='col-lg-7 mx-auto'>
+            <div class="card mt-2 mx-auto p-4 bg-light">
+              {books.map((book) => (
+                <div className="text-left" key={book.b_id}>
+                  <div className="card-body bg-light">
+                    <div className="container">
+                      <div className="card col-12 ">
+                        <div className='row'>
+                          <div className="col-6  p-4">
+                            <p>เลขการจอง : {book.b_id}</p>
+                            {/* แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง */}
+                            {users.length > 0 ? (
+                              users.map((user) => (
+                                // แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง
+                                <div key={user.id}>
+                                  <p>ชื่อ-สกุล : {user.user_name} {user.user_lastname}</p>
+                                  <p >เบอร์โทร : {user.user_phone}</p>
+                                  <p>อายุ : {user.user_age}</p>
+                                </div>
+                              ))) : (<p>ไม่พบข้อมูลผู้ใช้</p>)}
 
-              <p>วันที่จอง : {bookingDate}</p>
-              <p>บ้านเลขที่ : {book.h_id}</p>
-              {houses.length > 0 ? (
-                houses.map((house) => (
-                  // แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง
-                  <div key={house.id}>
-                    <p>ขนาดพื้นที่ดิน : {house.land_area} ตารางวา </p>
-                    <p>แปลนบ้าน : {house.house_plan} </p>
-                    {/* <p>ยอดผ่อนดาว : {house.book_price} บาท</p> */}
-                    <NumericFormat
-                      value={house.book_price}
-                      allowLeadingZeros
-                      thousandSeparator=","
-                      displayType="text"
-                      renderText={(value) => <p> รวมเงินทั้งสิ้น : {value} บาท</p>}
-                    />
-                    <NumericFormat
-                      value={house.book_price}
-                      allowLeadingZeros
-                      thousandSeparator=","
-                      displayType="text"
-                      renderText={(value) => <p>ค่าจอง : {value} บาท</p>}
-                    />
-                    {/* <p>ค่าจอง : {house.book_price} บาท</p> */}
-                  </div>
-                ))) : (<p>ไม่พบข้อมูลผู้ใช้</p>)}
+                            <p>วันที่จอง : {bookingDate}</p>
+                            <p>บ้านเลขที่ : {book.h_id}</p>
+                            {houses.length > 0 ? (
+                              houses.map((house) => (
+                                // แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง
+                                <div key={house.id}>
+                                  <p>ขนาดพื้นที่ดิน : {house.land_area} ตารางวา </p>
+                                  <p>แปลนบ้าน : {house.house_plan} </p>
+                                  {/* <p>ยอดผ่อนดาว : {house.book_price} บาท</p> */}
+                                  <NumericFormat
+                                    value={house.book_price}
+                                    allowLeadingZeros
+                                    thousandSeparator=","
+                                    displayType="text"
+                                    renderText={(value) => <p> รวมเงินทั้งสิ้น : {value} บาท</p>}
+                                  />
+                                  <NumericFormat
+                                    value={house.book_price}
+                                    allowLeadingZeros
+                                    thousandSeparator=","
+                                    displayType="text"
+                                    renderText={(value) => <p>ค่าจอง : {value} บาท</p>}
+                                  />
+                                  {/* <p>ค่าจอง : {house.book_price} บาท</p> */}
+                                </div>
+                              ))) : (<p>ไม่พบข้อมูลผู้ใช้</p>)}
 
+                          </div>
+
+                          <div className='col-6'>
+
+                          </div>
+                        </div>
+                      </div>
+                      <br />
+                      <button type="button" className="btn button09" onClick={generatePdf}>
+                        บันทึกเป็น PDF
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
+        </div>
+        <br />
+
       </div>
-      <br />
-      <button type="button" className="btn btn-primary" onClick={generatePdf}>
-        บันทึกเป็น PDF
-      </button>
     </div>
   );
 };
 
-export default Receipt;
+export default ReceiptRemain;

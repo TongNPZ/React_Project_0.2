@@ -32,30 +32,6 @@ const Bill = () => {
       });
   };
 
-
-  // const loadHouses = () => {
-  //   axios
-  //     .get('http://26.90.237.200:3000/admin/house/read')
-  //     .then(response => {
-  //       setHouses(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
-
-  // const loadHouseTypes = () => {
-  //   axios
-  //     .get('http://26.90.237.200:3000/admin/house_zone/read')
-  //     .then(response => {
-  //       setZones(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
-
-
   const statusBill = (status) => {
     switch (status) {
       case 0:

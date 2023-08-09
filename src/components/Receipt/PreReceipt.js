@@ -93,8 +93,8 @@ const PreReceipt = () => {
       const month = date.format('MMMM');
       const year = parseInt(date.format('YYYY')) + 543;
       const formattedDate = `${day}                        ${month}                     ${year}`;
-      const bookingDate = relatedbook.date_book && dayjs(relatedbook.date_contract).add(543, 'year').format('DD MMMM YYYY');
-      const ContractDate = relatedbook.date_contract && dayjs(relatedbook.date_contract).add(543, 'year').format('DD MMMM YYYY');
+      const bookingDate = relatedbook.date_book && dayjs(relatedbook.date).add(543, 'year').format('DD MMMM YYYY');
+      const ContractDate = relatedbook.date && dayjs(relatedbook.date).add(543, 'year').format('DD MMMM YYYY');
       page.drawText(formattedDate, { x: 325, y: y -158, size: 12, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedUser.user_name}  ${relatedUser.user_lastname}`, { x: 140, y: y - 201, size: 13, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedUser.user_age} `, { x: 325, y: y - 201, size: 13, font, color: rgb(0, 0, 0), });

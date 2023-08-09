@@ -27,7 +27,7 @@ const Users = () => {
       case 3:
         return { message: ' ลูกบ้าน ', colorClass: 'text-success' };
       default:
-        return { message: ' ไม่ทราบสถานะ', colorClass: '' };
+        return { message: ' ลูกค้า', colorClass: '' };
     }
   };
 
@@ -48,7 +48,7 @@ const Users = () => {
               <th>ที่อยู่</th>
               <th>อายุ</th>
               <th>เบอร์โทร</th>
-              <th>ที่อยู่อีเมล</th>
+              <th>ชื่่อผู้ใช้</th>
               <th>สัญชาติ</th>
               <th>สถานะ</th>
               {Auth.isLoggedIn && (
