@@ -73,11 +73,11 @@ const Zoneing = () => {
                   <div className="mt-3 d-flex">
                    
                   
-                    <button className="btn button07" onClick={() => handleDeleteClick(zone)}>
+                    <button className="btn button010" onClick={() => handleDeleteClick(zone)}>
                      <MdDelete size={30} /> ลบ
                     </button>
 
-                    <button className="btn button04" onClick={() => ZoneEdit(zone.hz_id)}>
+                    <button className="btn button09" onClick={() => ZoneEdit(zone.hz_id)}>
                     <AiFillEdit size={30}  /> แก้ไข
                     </button>
 

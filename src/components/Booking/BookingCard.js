@@ -15,6 +15,7 @@ const BookingCard = () => {
   const [books, setBooks] = useState([]);
   const [houses, setHouses] = useState([]);
   // const [selectedType, setSelectedType] = useState(null);
+  const [zones, setZones] = useState([]);
 
   const User_API = "http://26.90.237.200:3000/transfer/add";
   const [addTitleHolder, setAddTitleHolder] = useState("");
@@ -29,6 +30,7 @@ const BookingCard = () => {
   useEffect(() => {
     loadHouses();
     loadBooking();
+    loadHouseTypes();
   }, []);
 
   const loadHouses = () => {
@@ -36,6 +38,17 @@ const BookingCard = () => {
       .get('http://26.90.237.200:3000/admin/house/read')
       .then(response => {
         setHouses(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+  const loadHouseTypes = () => {
+    axios
+      .get('http://26.90.237.200:3000/admin/house_zone/read')
+      .then(response => {
+        setZones(response.data);
+
       })
       .catch(error => {
         console.error(error);
@@ -136,18 +149,20 @@ const BookingCard = () => {
   };
 
   const ContractAdd = (bookID) => {
-    navigate(`/ContractDoc/${bookID}`);
+    navigate(`/ContractAdd/${bookID}`);
   };
 
   const ContractEdit = (ConID) => {
     navigate(`/ContractEdit/${ConID}`);
   };
 
-
   const EditBooking = (bookID) => {
     navigate(`/EditBooking/${bookID}`);
   };
-
+  const getZoneName = (hz_id) => {
+    const matchedZone = zones.find(zone => zone.hz_id === hz_id);
+    return matchedZone ? matchedZone.name : 'ไม่มีโซน';
+  }
   return (
     <div className="container">
       <br />
@@ -158,11 +173,13 @@ const BookingCard = () => {
             <div className="col-4 d-flex mb-4">
               <div className="card " key={idx}>
                 <img className="card-img-top" src={house.image} alt={`House ${house.h_id}`} />
-                <div className="card-body" >
 
+                <div className="card-body" >
                   <h5 className="card-title">เลขการจอง: {book.b_id}</h5>
                   <br />
                   <div className='text-left'>
+                  <p className="card-text">โซน : {getZoneName(house.hz_id)}</p>
+
                     <p>บ้านเลขที่: {book.h_id}</p>
                     {house && (
                       <NumericFormat
@@ -183,19 +200,6 @@ const BookingCard = () => {
                     <p>เลขบัตรประชาชนผู้จอง: {book.user_id}</p>
 
                     <p>หมายเหตุ: {book.note}</p>
-
-                    {/* {Auth.isLoggedIn && Auth.status == 1 && (
-                    <div className="mt-3">
-                      {book.status === 0 && (
-                        <div className="d-flex">
-                          <Link to={`/EditBooking/${book.b_id}`} className="btn button">แก้ไข</Link>
-                          <button className="btn button" onClick={() => handleCancelClick(book)}>
-                            ยกเลิกการจอง
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  )} */}
                   </div>
 
                   {Auth.isLoggedIn && Auth.status == 1 && (
@@ -224,7 +228,7 @@ const BookingCard = () => {
                                 <AiFillEdit size={30} style={{ color: '#1088d8' }} />แก้ไขการจอง
                               </Dropdown.Item>
                               <Dropdown.Item onClick={() => handleCancelClick(book)}  >
-                                <MdDelete size={30} style={{ color: '#1088d8' }} /> ลบการจอง
+                                <MdDelete size={30} style={{ color: '#1088d8' }} /> ยกเลิกการจอง
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
@@ -303,8 +307,6 @@ const BookingCard = () => {
                       )}
                     </div>
                   )}
-
-
 
                 </div>
               </div>

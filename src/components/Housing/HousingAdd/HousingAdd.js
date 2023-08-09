@@ -76,7 +76,7 @@ const HousingAdd = () => {
         <h1>เพิ่มข้อมูลบ้าน</h1>
       </div>
 
-      <div className="row ">
+      <div className=" row ">
         <div className="col-lg-7 mx-auto tex">
           <div className="card mt-2 mx-auto p-4 bg-light">
             <div className="card-body bg-light">
