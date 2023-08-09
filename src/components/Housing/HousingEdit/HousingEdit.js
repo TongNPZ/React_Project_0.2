@@ -89,6 +89,9 @@ const HousingEdit = () => {
     }
   };
 
+  const Cancel = () => {
+    navigate(`/Housing/`);
+  };
   return (
     <div className="container">
       <h1>แก้ไขข้อมูลบ้าน</h1>
@@ -138,7 +141,7 @@ const HousingEdit = () => {
                                     className="form-control"
                                     id="newNumDeed"
                                     maxLength="6"
-                                    value={numDeed || houseData[0]?.num_deed }
+                                    value={numDeed || houseData[0]?.num_deed}
                                     onChange={e => setNumDeed(e.target.value)}
                                   />
                                 </div>
@@ -152,7 +155,7 @@ const HousingEdit = () => {
                                     className="form-control"
                                     id="newNumSurvey"
                                     maxLength="5"
-                                    value={numSurvey || houseData[0]?.num_survey }
+                                    value={numSurvey || houseData[0]?.num_survey}
                                     onChange={e => setNewNumSurvey(e.target.value)}
                                   />
                                 </div>
@@ -182,7 +185,7 @@ const HousingEdit = () => {
                                     className="form-control"
                                     id="newArea"
                                     maxLength="11"
-                                    value={area || houseData[0]?.area }
+                                    value={area || houseData[0]?.area}
                                     onChange={e => setArea(parseInt(e.target.value))}
                                   />
                                 </div>
@@ -198,7 +201,7 @@ const HousingEdit = () => {
                                     className="form-control"
                                     id="newPrice"
                                     maxLength="15"
-                                    value={price || houseData[0]?.h_price }
+                                    value={price || houseData[0]?.h_price}
                                     onChange={e => setPrice(parseInt(e.target.value))}
                                   />
                                 </div>
@@ -212,7 +215,7 @@ const HousingEdit = () => {
                                     className="form-control"
                                     id="newBookingPrice"
                                     maxLength="15"
-                                    value={BookingPrice || houseData[0]?.book_price }
+                                    value={BookingPrice || houseData[0]?.book_price}
                                     onChange={e => setBookingPrice(parseInt(e.target.value))}
                                   />
                                 </div>
@@ -226,7 +229,7 @@ const HousingEdit = () => {
                                 className="form-control"
                                 id="newNote"
                                 maxLength="25"
-                                value={note || houseData[0]?.h_note }
+                                value={note || houseData[0]?.h_note}
                                 onChange={e => setNote(e.target.value)}
                               />
                             </div>
@@ -261,15 +264,22 @@ const HousingEdit = () => {
                         </div>
 
                         <div className="row">
-
                           <div className="col-md-12">
                             <br />
-                            <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={EditHouse}>
-                            &nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;
-                            </button>
+                            <div className="row">
+                              <div className="col-md-6">
+                                <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={EditHouse}>
+                                  แก้ไข
+                                </button>
+                              </div>
+                              <div className="col-md-6">
+                                <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                                  ยกเลิก
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
-
                       </div>
                     </form>
                   </div>

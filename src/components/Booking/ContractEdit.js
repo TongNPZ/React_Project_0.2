@@ -65,7 +65,11 @@ const ContractEdit = () => {
       }
     }
   };
-  console.log(contracts);
+
+  const Cancel = () => {
+    navigate(`/Booking`);
+  };
+
   return (
     <div className="container">
       <div className="text-center">
@@ -136,9 +140,19 @@ const ContractEdit = () => {
 
                     <div className="row">
                       <div className="col-md-12">
-                        <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={Edit}>
-                          บันทึก
-                        </button>
+                        <br />
+                        <div className="row">
+                          <div className="col-md-6">
+                            <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={Edit}>
+                              &nbsp;&nbsp;บันทึก&nbsp;&nbsp;
+                            </button>
+                          </div>
+                          <div className="col-md-6">
+                            <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                              ยกเลิก
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
 

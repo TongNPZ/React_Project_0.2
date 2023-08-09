@@ -57,7 +57,7 @@ const Zoneing = () => {
       
       {Auth.isLoggedIn && Auth.status == 1 && (
         <div className="d-flex justify-content-end">
-          <button className="btn button06" onClick={() => { navigate('/ZoneAdd'); }}>เพิ่ม</button>
+          <button className="btn button06" onClick={() => { navigate('/ZoneAdd'); }}>  &nbsp;&nbsp;เพิ่ม&nbsp;&nbsp; </button>
         </div>
       )}
 
@@ -74,11 +74,11 @@ const Zoneing = () => {
                    
                   
                     <button className="btn button010" onClick={() => handleDeleteClick(zone)}>
-                     <MdDelete size={30} /> ลบ
+                     <MdDelete size={20} /> ลบ
                     </button>
 
                     <button className="btn button09" onClick={() => ZoneEdit(zone.hz_id)}>
-                    <AiFillEdit size={30}  /> แก้ไข
+                    <AiFillEdit size={20}  /> แก้ไข
                     </button>
 
                   </div>

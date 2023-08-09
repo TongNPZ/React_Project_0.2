@@ -178,7 +178,7 @@ const BookingCard = () => {
                   <h5 className="card-title">เลขการจอง: {book.b_id}</h5>
                   <br />
                   <div className='text-left'>
-                  <p className="card-text">โซน : {getZoneName(house.hz_id)}</p>
+                    <p className="card-text">โซน : {getZoneName(house.hz_id)}</p>
 
                     <p>บ้านเลขที่: {book.h_id}</p>
                     {house && (
@@ -292,12 +292,12 @@ const BookingCard = () => {
                                 </Modal.Body>
                                 <br />
                                 <Modal.Footer>
-                                  <Button className="btn button09" onClick={Contract}>
+                                  <button className="btn button09" onClick={Contract}>
                                     บันทึก
-                                  </Button>
-                                  <Button className="btn button07" onClick={handleClose}>
+                                  </button>
+                                  <button className="btn button010" onClick={handleClose}>
                                     ปิด
-                                  </Button>
+                                  </button>
                                 </Modal.Footer>
                               </Modal>
 

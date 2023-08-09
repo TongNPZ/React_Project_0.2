@@ -141,7 +141,7 @@ const AddBill = () => {
 
                 <div className="text-center">
                   <button className="btn button09" onClick={() => AddBook()}>
-                    แก้ไข
+                  &nbsp;&nbsp;ส่ง&nbsp;&nbsp;
                   </button>
                 </div>
                 <br />

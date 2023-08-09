@@ -151,7 +151,7 @@ const ShowHousing = () => {
         Auth.isLoggedIn && Auth.status == 1 && (
           <div className="d-flex justify-content-end">
             <button className="btn button06 mr-2" onClick={() => HousingAdd()}>
-              เพิ่ม
+            &nbsp;&nbsp; เพิ่ม  &nbsp;&nbsp;
             </button>
           </div>
         )
