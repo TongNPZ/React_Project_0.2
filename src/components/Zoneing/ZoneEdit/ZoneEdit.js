@@ -50,7 +50,7 @@ const ZoneEdit = () => {
 // console.log(data)
   return (
     <div className="container">
-    <h1>แก้ไขการจอง</h1>
+    <h1>แก้ไขโซน</h1>
 
     <form>
       {zones.map((val, idx) => (

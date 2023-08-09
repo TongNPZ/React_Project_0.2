@@ -5,17 +5,7 @@ import { Carousel } from 'react-bootstrap';
 
 
 const Homepage = () => {
-  const divStyle = {
-    backgroundImage: 'url(/image/Life-Box-320-1.jpg)',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    height: '100vh',
-    color: 'white',
-    textAlign: 'center',
-    paddingTop: '20vh',
-    position: 'relative',
-  };
+
 
   const homeTableStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.0)',
@@ -42,11 +32,7 @@ const Homepage = () => {
 
   return (
     <div className="container">
-      <div className="container" style={divStyle}>
-        {/* ส่วนของหัวเรื่อง */}
-        <h1>พวงเพชร 4</h1>
-        <h2>“พวกเพชร บ้านเลอค่าดุจอัญมณี”</h2>
-      </div>
+      
       <div id="demo" className="carousel slide" data-bs-ride="carousel">
 <div className="carousel-indicators">
   <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
@@ -55,19 +41,19 @@ const Homepage = () => {
 </div>
 <br></br>
 <br></br>
-<br></br>
-<br></br>
-<h2 className="ssr-section-header text-center">ตัวอย่างบ้าน</h2>
+
+<h2 className="ssr-section-header text-center">พวงเพชร 4</h2>
+<h2>“พวกเพชร บ้านเลอค่าดุจอัญมณี”</h2>
 <br></br>
 <Carousel>
   <Carousel.Item>
-    <img src="/image/home3.png" alt="รูปภาพ" className="d-block"  />
+    <img src="/image/lift.jpg" alt="รูปภาพ" className="d-block"  />
   </Carousel.Item>
   <Carousel.Item>
-    <img src="/image/home3.png" alt="รูปภาพ" className="d-block" />
+    <img src="/image/house.jpg" alt="รูปภาพ" className="d-block" />
   </Carousel.Item>
   <Carousel.Item>
-    <img src="/image/home3.png" alt="รูปภาพ" className="d-block"  />
+    <img src="/image/house1.jpg" alt="รูปภาพ" className="d-block"  />
   </Carousel.Item>
 </Carousel>
 
@@ -136,7 +122,11 @@ const Homepage = () => {
         </table>
         {/* <button style={buttonStyle}>เข้าเยี่ยมชม</button> */}
       </div>
-      </div>
+      <div /* className="footer left-aligned-footer  ">
+  <img src="/image/foot.png" alt="Footer Image" */ />
+</div>
+    
+
 
 
   );

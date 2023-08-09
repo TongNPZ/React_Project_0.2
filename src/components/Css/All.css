@@ -170,3 +170,14 @@
   text-align: left !important;
 }  
 
+.left-aligned-footer {
+  text-align: left;
+  padding-left:1px; /* Add some left padding for spacing */
+}
+.left-aligned-footer img {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+
+

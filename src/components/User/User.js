@@ -39,7 +39,7 @@ console.log(userData[0].status_authen);
 
   return (
     <div className="container">
-        <h1>ข้อมูลผู้ลูกค้า</h1>
+        <h1>ข้อมูลลูกค้า</h1>
       <div>
         {userData.map((user, idx) => (
           <div className="card" key={idx}>
