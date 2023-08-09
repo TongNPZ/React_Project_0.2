@@ -9,7 +9,6 @@ const EditBooking = () => {
   // const [id, setId] = useState('');
   const [newHouseFK, setNewHouseFK] = useState("");
   const [newUserFK, setNewUserFK] = useState("");
-  const [newDateContract, setNewDateContract] = useState("");
   const [newNote, setNewNote] = useState("");
   const [books, setBooks] = useState([]);
 
@@ -35,7 +34,6 @@ const EditBooking = () => {
       // newAmount: newAmount,
       newHouseFK: newHouseFK || books[0]?.h_id,
       newUserFK: newUserFK || books[0]?.user_id,
-      newDateContract: newDateContract || books[0]?.date_contract,
       newNote: newNote || books[0]?.note,
     };
     // console.log(data)
@@ -115,39 +113,28 @@ const EditBooking = () => {
                       </div>
                       <br />
 
-                      <div className="form-group">
-                        <label htmlFor="newDateContract">&nbsp;&nbsp;วันที่ทำสัญญา</label>
-                        <input
-                          type="date"
-                          className="form-control"
-                          id="newDateContract"
-                          value={newDateContract || val.date_contract}
-                          onChange={(e) => setNewDateContract(e.target.value)}
-                        />
-                      </div>
                       <br />
 
                     </div>
                   ))}
-             
 
                   <div className="row">
-                      <div className="col-md-12">
-                        <br />
-                        <div className="row">
-                          <div className="col-md-6">
-                            <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={updateUser}>
-                              แก้ไข
-                            </button>
-                          </div>
-                          <div className="col-md-6">
-                            <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
-                              ยกเลิก
-                            </button>
-                          </div>
+                    <div className="col-md-12">
+                      <br />
+                      <div className="row">
+                        <div className="col-md-6">
+                          <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={updateUser}>
+                            แก้ไข
+                          </button>
+                        </div>
+                        <div className="col-md-6">
+                          <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                            ยกเลิก
+                          </button>
                         </div>
                       </div>
                     </div>
+                  </div>
 
                 </form>
               </div>

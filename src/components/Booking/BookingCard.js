@@ -140,6 +140,10 @@ const BookingCard = () => {
     navigate(`/ReceiptCon/${bookID}`);
   };
 
+  const ReceiptRemain = (bookID) => {
+    navigate(`/ReceiptRemain/${bookID}`);
+  };
+
   const Receipt = (bookID) => {
     navigate(`/Receipt/${bookID}`);
   };
@@ -159,10 +163,12 @@ const BookingCard = () => {
   const EditBooking = (bookID) => {
     navigate(`/EditBooking/${bookID}`);
   };
+
   const getZoneName = (hz_id) => {
     const matchedZone = zones.find(zone => zone.hz_id === hz_id);
     return matchedZone ? matchedZone.name : 'ไม่มีโซน';
   }
+
   return (
     <div className="container">
       <br />
@@ -260,6 +266,9 @@ const BookingCard = () => {
                                     </Dropdown.Item>
                                     <Dropdown.Item onClick={() => ReceiptCon(book.b_id)} >
                                       <BsFiletypePdf size={30} style={{ color: '#1088d8' }} /> พิมพ์ใบเสร็จสัญญา
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={() => ReceiptRemain(book.b_id)} >
+                                      <BsFiletypePdf size={30} style={{ color: '#1088d8' }} /> พิมพ์ใบเสร็จเงินส่วนที่เหลือ
                                     </Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item onClick={() => ContractEdit(book.b_id)}  >

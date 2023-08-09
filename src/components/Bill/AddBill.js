@@ -62,17 +62,14 @@ const AddBill = () => {
     try {
       const response = await axios.post(House_API, data);
       alert('ส่งสำเร็จแล้ว');
-
       // ทำการ navigate ไปยังหน้า Receipt พร้อมกับส่งค่า addedBookData ไปด้วย
-      navigate(`/Bill`); //ใบเสนอราคา
+      navigate(`/Bill`); 
     } catch (error) {
       console.error(error);
       alert('ผิดพลาด');
     }
-    console.log(data)
 
   };
-
 
 
   return (

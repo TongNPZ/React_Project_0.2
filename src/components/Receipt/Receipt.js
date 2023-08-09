@@ -95,7 +95,6 @@ const Receipt = () => {
       const year = parseInt(date.format('YYYY')) + 543;
       let thaiBahtText = require('thai-baht-text');
       let priceInThai = thaiBahtText(relatedHouse.book_price);
-      // const bookingDate = relatedbook.date_contract && dayjs(relatedbook.date_contract).add(543, 'year').format('DD MMMM YYYY');
       page.drawText(` ${relatedUser.user_name}  ${relatedUser.user_lastname}`, { x: 110, y: y - 589, size: 9, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedHouse.h_id}`, { x: 348, y: y - 618, size: 9, font, color: rgb(0, 0, 0), });
       page.drawText(` ${relatedHouse.book_price.toLocaleString()} `, { x: 110, y: y - 676, size: 9, font, color: rgb(0, 0, 0), });

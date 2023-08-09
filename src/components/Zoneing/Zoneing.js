@@ -65,7 +65,7 @@ const Zoneing = () => {
       <div className="row">
         {zones.map((zone, idx) => (
           <div className="col-4" key={idx}>
-            <div className="card" >
+            <div className="card box01" >
               <div className="card-body">
                 <h5 className="card-title">โซน {zone.name}</h5>
                 

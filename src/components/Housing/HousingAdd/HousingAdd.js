@@ -70,7 +70,7 @@ const HousingAdd = () => {
   };
 
   const Cancel = () => {
-    navigate(`/Housing/`);
+    navigate(`/Housing`);
   };
 
   return (
@@ -80,7 +80,7 @@ const HousingAdd = () => {
       </div>
 
       <div className=" row ">
-        <div className="col-lg-7 mx-auto tex">
+        <div className="col-lg-7 mx-auto ">
           <div className="card mt-2 mx-auto p-4 bg-light">
             <div className="card-body bg-light">
               <div className="container">
@@ -250,16 +250,16 @@ const HousingAdd = () => {
                       <div className="col-md-12">
                         <br />
                         <div className="row">
-                        <div className="col-md-6">
-                        <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={addHouse}>
-                        &nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;
-                        </button>
-                        </div>
-                        <div className="col-md-6">
-                        <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
-                          ยกเลิก
-                        </button>
-                        </div>
+                          <div className="col-md-6">
+                            <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={addHouse}>
+                              &nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;
+                            </button>
+                          </div>
+                          <div className="col-md-6">
+                            <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                              ยกเลิก
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>

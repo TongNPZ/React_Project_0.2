@@ -34,7 +34,7 @@ const LoginForm = () => {
   return (
 
     <div className=" login-container">
-      <div className="login-box">
+      <div className="box">
         <h2 className="text-center">เข้าสู่ระบบ</h2>
         <form onSubmit={handleSubmit} className="login-form text-left">
           <br/>

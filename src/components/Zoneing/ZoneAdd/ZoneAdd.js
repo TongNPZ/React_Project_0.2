@@ -12,7 +12,7 @@ const ZoneAdd = () => {
     const data = {
       addName: addName,
     };
-  
+
     try {
       const shouldAdd = window.confirm('คุณต้องการทำเพิ่มโซน?');
       if (shouldAdd) {
@@ -28,30 +28,48 @@ const ZoneAdd = () => {
     }
   };
 
+  const Cancel = () => {
+    navigate(`/Zoneing`);
+  };
+
   return (
-    <div className="container">
-       <h1>เพิ่มโซนที่ดิน</h1>
-      <form>
-        <div className="mb-3">
-   
-          <div>
-            <label htmlFor="addName" className="form-label">
-              โซน
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="addName"
-              value={addName}
-              onChange={(e) => setAddName(e.target.value)}
-            />
-          </div>
-         
+
+    <div className="login-container">
+      <div className='box'>
+      <h1>เพิ่มโซนบ้าน</h1>
+      <form className="login-form text-left">
+        <br />
+        <div className="form-group">
+          <label>  &nbsp;&nbsp;ชื่อโซน </label>
+          <input
+            type="text"
+            className="form-control"
+            value={addName}
+            onChange={(e) => setAddName(e.target.value)}
+          />
         </div>
-        <button type="button" className="btn btn-primary" onClick={addZone}>
-          เพิ่มโซน
-        </button>
+        <br />
+
+        <div className="row">
+          <div className="col-md-12">
+            <br />
+            <div className="row">
+              <div className="col-md-6">
+                <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={addZone}>
+                  &nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;
+                </button>
+              </div>
+              <div className="col-md-6">
+                <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                  ยกเลิก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </form>
+    </div>
     </div>
   );
 };

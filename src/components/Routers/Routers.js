@@ -25,8 +25,9 @@ import TransferEdit from "../Transfer/TransferEdit";
 import TransferUser from "../Transfer/TransferUser";
 import Receipt from "../Receipt/Receipt";
 import ReceiptCon from "../Receipt/ReceiptCon";
+import ReceiptRemain from "../Receipt/ReceiptRemain";
+
 import ContractDoc from "../Receipt/ContractDoc";
-import PreReceipt from "../Receipt/PreReceipt";
 import Bill from '../Bill/Bill';
 import AddBill from '../Bill/AddBill';
 import ManageUsers from "../ManageUsers/ManageUsers";
@@ -75,7 +76,8 @@ const router = createBrowserRouter([
             { path: '/TransferUser/:Uid', element: <TransferUser />},
             { path: '/Receipt/:Bid', element: <Receipt />},
             { path: '/ReceiptCon/:Bid', element: <ReceiptCon />},
-            { path: '/PreReceipt/:Bid', element: <PreReceipt />},
+            { path: '/ReceiptRemain/:Bid', element: <ReceiptRemain />},
+        
             { path: '/ContractDoc/:Bid', element: <ContractDoc />},
             { path: '/Bill', element: <Bill />},
             { path: '/UsePassEdit/:Uid', element: <UsePassEdit />},

@@ -27,7 +27,7 @@ const Users = () => {
       case 3:
         return { message: ' ลูกบ้าน ', colorClass: 'text-success' };
       default:
-        return { message: ' ไม่มีสถานะ', colorClass: '' };
+        return { message: ' ลูกค้า', colorClass: '' };
     }
   };
 
