@@ -50,14 +50,14 @@ const AdminProfileEdit = () => {
     formData.append('newMDAddress', newMDAddress || profile[0]?.md_address);
     formData.append('newImages', image);
 
-console.log(formData.image)
-console.log(formData)
-console.log(profile[0].he_id)
+    console.log(formData.image)
+    console.log(formData)
+    console.log(profile[0].he_id)
 
     try {
       const shouldEdit = window.confirm('คุณต้องการทำการแก้ไขหรือไม่?');
       if (shouldEdit) {
-        const response = await axios.patch(API_URL, formData,  {
+        const response = await axios.patch(API_URL, formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // ตั้งค่า Content-Type เป็น multipart/form-data
           }
@@ -72,162 +72,219 @@ console.log(profile[0].he_id)
     }
   };
 
+  const Cancel = () => {
+    navigate(`/AdminProfile`);
+  };
+
   return (
     <div className="container">
-       <h1>แก้ไขข้อมูลผู้จัดการ</h1>
-      <form>
-        {profile.map((val, idx) => (
-          <div key={idx}>
-             <div>
-            <label htmlFor="newName" className="form-label">
-            ชื่อโครงการ
-            </label>
-            <input
-               maxLength="20"
-              type="text"
-              className="form-control"
-              id="newName"
-              value={newName || val.name}
-              onChange={e => setNewName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="newManagerName" className="form-label">
-            ชื่อผู้จัดการ
-            </label>
-            <input
-               maxLength="20"
-              type="text"
-              className="form-control"
-              id="newManagerName"
-              value={newManagerName || val.manager_name}
-              onChange={e => setNewManagerName(e.target.value)}
-            /> 
-          </div>
-          <div>
-            <label htmlFor="newManagerLastname" className="form-label">
-            นามสกุล
-            </label>
-            <input
-               maxLength="20"
-              type="text"
-              className="form-control"
-              id="newManagerLastname"
-              value={newManagerLastname || val.manager_lastname}
-              onChange={e => setNewManagerLastname(e.target.value)}
-            /> 
-          </div>
-          <div>
-            <label htmlFor="newCompany" className="form-label">
-            ชื่อบริษัทใหม่
-            </label>
-            <input
-             maxLength="25"
-              type="text"
-              className="form-control"
-              id="newCompany"
-              value={newCompany || val.company}
-              onChange={e => setNewCompany(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="newAddress" className="form-label">
-            ที่อยู่โครงการ
-            </label>
-            <input
-             maxLength="6"
-              type="text"
-              className="form-control"
-              id="newAddress"
-              value={newAddress || val.address}
-              onChange={e => setNewAddress(e.target.value)}
-            />
-          </div>
+      <h1>แก้ไขข้อมูลโครงการ</h1>
 
-          <div>
-            <label htmlFor="newPhone" className="form-label">
-            เบอร์โทร
-            </label>
-            <input
-              maxLength="10"
-              type="number"
-              className="form-control"
-              id="newPhone"
-              value={newPhone || val.phone}
-              onChange={e => setNewPhone(e.target.value)}
-            />
+      <div className=" row ">
+        <div className="col-lg-7 mx-auto ">
+          <div className="card mt-2 mx-auto p-4 bg-light">
+            <div className="card-body bg-light">
+              <div className="container">
+
+                <form>
+                  <div className="controls text-left">
+                    <div className="row">
+                      <div className="col-md-12">
+
+                        {profile.map((val, idx) => (
+                          <div key={idx}>
+                            <div>
+                              <label htmlFor="newName" className="form-label">
+                                &nbsp;&nbsp; <strong> ชื่อโครงการ </strong>
+                              </label>
+                              <input
+                                maxLength="20"
+                                type="text"
+                                className="form-control"
+                                id="newName"
+                                value={newName || val.name}
+                                onChange={e => setNewName(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div className='row'>
+                              <div className='col-md-6'>
+                                <div>
+                                  <label htmlFor="newManagerName" className="form-label">
+                                    &nbsp;&nbsp; <strong> ชื่อผู้จัดการ </strong>
+                                  </label>
+                                  <input
+                                    maxLength="20"
+                                    type="text"
+                                    className="form-control"
+                                    id="newManagerName"
+                                    value={newManagerName || val.manager_name}
+                                    onChange={e => setNewManagerName(e.target.value)}
+                                  />
+                                </div>
+                              </div>
+                              <br />
+                              <div className='col-md-6'>
+                                <div>
+                                  <label htmlFor="newManagerLastname" className="form-label">
+                                    &nbsp;&nbsp; <strong> นามสกุล </strong>
+                                  </label>
+                                  <input
+                                    maxLength="10"
+                                    type="tel"
+                                    className="form-control"
+                                    id="newManagerLastname"
+                                    value={newManagerLastname || val.manager_lastname}
+                                    onChange={e => setNewManagerLastname(e.target.value)}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="newCompany" className="form-label">
+                                &nbsp;&nbsp; <strong> ชื่อบริษัทใหม่ </strong>
+                              </label>
+                              <input
+                                maxLength="25"
+                                type="text"
+                                className="form-control"
+                                id="newCompany"
+                                value={newCompany || val.company}
+                                onChange={e => setNewCompany(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="newAddress" className="form-label">
+                                &nbsp;&nbsp;  <strong> ที่อยู่โครงการ </strong>
+                              </label>
+                              <input
+                                maxLength="6"
+                                type="text"
+                                className="form-control"
+                                id="newAddress"
+                                value={newAddress || val.address}
+                                onChange={e => setNewAddress(e.target.value)}
+                              />
+                            </div>
+                            <br />
+
+                            <div>
+                              <label htmlFor="newPhone" className="form-label">
+                                &nbsp;&nbsp; <strong> เบอร์โทร </strong>
+                              </label>
+                              <input
+                                maxLength="10"
+                                type="number"
+                                className="form-control"
+                                id="newPhone"
+                                value={newPhone || val.phone}
+                                onChange={e => setNewPhone(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="newMDName" className="form-label">
+                                &nbsp;&nbsp; <strong> ชื่อกรรมการผู้จัดการ </strong>
+                              </label>
+                              <input
+                                maxLength="10"
+                                type="text"
+                                className="form-control"
+                                id="newMDName"
+                                value={newMDName || val.md_name}
+                                onChange={e => setNewMDName(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="newMDNationality" className="form-label">
+                                &nbsp;&nbsp; <strong> สัญชาติกรรมการผู้จัดการ </strong>
+                              </label>
+                              <input
+                                maxLength="20"
+                                type="text"
+                                className="form-control"
+                                id="newMDNationality"
+                                value={newMDNationality || val.md_nationality}
+                                onChange={e => setNewMDNationality(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="newMDAddress" className="form-label">
+                                &nbsp;&nbsp; <strong> ที่อยู่กรรมการผู้จัดการ </strong> 
+                              </label>
+                              <input
+                                maxLength="20"
+                                type="text"
+                                className="form-control"
+                                id="newMDAddress"
+                                value={newMDAddress || val.md_address}
+                                onChange={e => setNewMDAddress(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="newDownRate" className="form-label">
+                                &nbsp;&nbsp; <strong> อัตราผ่อนใหม่ </strong>
+                              </label>
+                              <input
+                                maxLength="20"
+                                type="number"
+                                className="form-control"
+                                id="newDownRate"
+                                value={newDownRate || val.down_rate}
+                                onChange={e => setNewDownRate(e.target.value)}
+                              />
+                            </div>
+                            <br />
+                            <div>
+                              <label htmlFor="image" className="form-label ">
+                                &nbsp;&nbsp;<strong>รูปภาพ Logo บริษัท</strong>
+                              </label>
+                              <input
+                                type="file"
+                                className="form-control"
+                                id="image"
+                                onChange={e => setImage(e.target.files[0])}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                        <br />
+                        {/* <button type="button" className="btn btn-primary" onClick={updateProfile}>
+                          แก้ไขข้อมูล
+                        </button> */}
+
+                        <div className="row">
+                          <div className="col-md-12">
+                            <br />
+                            <div className="row">
+                              <div className="col-md-6">
+                                <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={updateProfile}>
+                                  &nbsp;&nbsp;แก้ไข&nbsp;&nbsp;
+                                </button>
+                              </div>
+                              <div className="col-md-6">
+                                <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                                  ยกเลิก
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-          <div>
-            <label htmlFor="newMDName" className="form-label">
-            ชื่อกรรมการผู้จัดการ
-            </label>
-            <input
-              maxLength="10"
-              type="text"
-              className="form-control"
-              id="newMDName"
-              value={newMDName || val.md_name}
-              onChange={e => setNewMDName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="newMDNationality" className="form-label">
-            สัญชาติกรรมการผู้จัดการ
-            </label>
-            <input
-            maxLength="20"
-              type="text"
-              className="form-control"
-              id="newMDNationality"
-              value={newMDNationality || val.md_nationality}
-              onChange={e => setNewMDNationality(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="newMDAddress" className="form-label">
-            ที่อยู่กรรมการผู้จัดการ
-            </label>
-            <input
-            maxLength="20"
-              type="text"
-              className="form-control"
-              id="newMDAddress"
-              value={newMDAddress || val.md_address}
-              onChange={e => setNewMDAddress(e.target.value)}
-            />
-          </div>
-     
-          <div>
-            <label htmlFor="newDownRate" className="form-label">
-            อัตราผ่อนใหม่
-            </label>
-            <input
-            maxLength="20"
-              type="number"
-              className="form-control"
-              id="newDownRate"
-              value={newDownRate || val.down_rate} 
-              onChange={e => setNewDownRate(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="image" className="form-label">
-            รูปภาพ Logo บริษัท
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="image"
-              onChange={e => setImage(e.target.files[0])}
-            />
-          </div>
-          </div>
-        ))}
-        <br/> 
-        <button type="button" className="btn btn-primary" onClick={updateProfile}>
-          แก้ไขข้อมูล
-        </button>
-      </form>
+        </div>
+      </div>
     </div>
   );
 };

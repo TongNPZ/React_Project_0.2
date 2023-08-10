@@ -44,11 +44,10 @@ const NavBar = () => {
   const LoginForm = () => {
     navigate('/LoginForm');
   };
-
-  const HouseUser = () => {
-    
-    navigate('/UserHouse');
+  const UserHouse = (UserId) => {
+    navigate(`/UserHouse/${UserId}`);
   };
+
   return (
     <header>
          
@@ -105,7 +104,14 @@ const NavBar = () => {
       {Auth.status == 1 && (
         <Dropdown.Item as={Link} to="/AddBill">เพิ่มข้อมูลค่าส่วนกลาง</Dropdown.Item>
       )}
-      <Dropdown.Item as={Link} to="/Bill" >ดูข้อมูลค่าส่วนกลาง</Dropdown.Item>
+      
+      {Auth.status == 1 && (
+        <Dropdown.Item as={Link} to="/AllBill" >ดูข้อมูลค่าส่วนกลาง</Dropdown.Item>
+      )}
+
+       {Auth.status == 3 && (
+        <Dropdown.Item as={Link} to={`/UserBill/${Auth.user}`} >ดูข้อมูลค่าส่วนกลาง</Dropdown.Item>
+      )}
     </Dropdown.Menu>
   </Dropdown>
 )}
@@ -141,8 +147,8 @@ const NavBar = () => {
                           )}
                           {Auth.isLoggedIn && (Auth.status == 3 || Auth.status == 2) && (
                             <div>
-                           <Dropdown.Item as={Link} to={`/User/${Auth.user}`}> ข้อมูลลูกผู้ใช้ </Dropdown.Item>
-                              <Dropdown.Item onClick={ HouseUser }> บ้านของคุณ </Dropdown.Item>
+                           <Dropdown.Item as={Link} to={`/User/${Auth.user}`}> ข้อมูลผู้ใช้ </Dropdown.Item>
+                              <Dropdown.Item onClick={() => UserHouse(Auth.user)}> บ้านของคุณ </Dropdown.Item>
                             </div>
                           )}
                           <Dropdown.Divider />

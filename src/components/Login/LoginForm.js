@@ -61,7 +61,7 @@ const LoginForm = () => {
             />
           </div>
           <div className="d-flex justify-content-center">
-            <button type="submit" className="btn button09">เข้าสู่ระบบ</button>
+            <button type="submit" className="btn button">เข้าสู่ระบบ</button>
           </div>
         </form>
       </div>

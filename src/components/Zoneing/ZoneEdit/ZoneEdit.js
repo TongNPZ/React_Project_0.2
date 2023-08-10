@@ -46,14 +46,6 @@ const ZoneEdit = () => {
       navigate('/Zoneing');
     }
   };
-<<<<<<< HEAD
-  
-// console.log(data)
-  return (
-    <div className="container">
-    <h1>แก้ไขโซน</h1>
-=======
->>>>>>> d3186c2434d3c0558be905529a6dbc70ac39f150
 
   const Cancel = () => {
     navigate(`/Zoneing`);

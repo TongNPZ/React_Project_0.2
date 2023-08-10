@@ -41,13 +41,19 @@ console.log(data)
       }
     }
   };
+  
+  const Cancel = () => {
+    navigate(`/AdminProfile`);
+  };
 
   return (
-    <div className="container">
-      <h1>แก้ไขชื่อผู้ใช้และรหัสผ่าน</h1>
+    <div className="login-container">
+          <div className="box ">
+      <h2>แก้ไขชื่อผู้ใช้และรหัสผ่าน</h2>
+      <br/>
       <form>
-            <div className="form-group">
-              <label>ชื่อผู้ใช้</label>
+            <div className="form-group text-left">
+              <label>&nbsp;&nbsp;ชื่อผู้ใช้</label>
               <input
                 type="username"
                 className="form-control"
@@ -55,8 +61,9 @@ console.log(data)
                 onChange={(e) => setNewUsername(e.target.value)}
               />
             </div>
-            <div className="form-group">
-              <label>รหัสผ่าน</label>
+            <br/>
+            <div className="form-group text-left">
+              <label>&nbsp;&nbsp;รหัสผ่าน</label>
               <input
                 type="password"
                 className="form-control"
@@ -65,11 +72,27 @@ console.log(data)
               />
             </div>
             <br />
-        <button type="button" className="btn btn-primary" onClick={updateUser}>
-          แก้ไขข้อมูล
-        </button>
+
+        <div className="row">
+            <div className="col-md-12">
+              <br />
+              <div className="row">
+                <div className="col-md-6">
+                  <button type="button" className="btn button09 btn-send pt-2 btn-block" onClick={updateUser}>
+                    แก้ไขข้อมูล
+                  </button>
+                </div>
+                <div className="col-md-6">
+                  <button type="button" className="btn button010 btn-send pt-2 btn-block" onClick={Cancel}>
+                    ยกเลิก
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         
       </form>
+    </div>
     </div>
   );
 };

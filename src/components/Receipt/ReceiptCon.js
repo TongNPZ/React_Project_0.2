@@ -148,60 +148,80 @@ const Receipt = () => {
   const bookingDate = `${day} ${month} ${year}`;
   return (
     <div className="container">
-      <br />
-      <div>
+    <br />
+    <div>
         <h1> ใบเสร็จสัญญา </h1>
-        {books.map((book) => (
-          <div className="card" key={book.b_id}>
-            <div className="content">
-              <p>เลขการจอง : {book.b_id}</p>
-              {/* แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง */}
-              {users.length > 0 ? (
-                users.map((user) => (
-                  // แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง
-                  <div key={user.id}>
-                    <p>ชื่อ-สกุล : {user.user_name} {user.user_lastname}</p>
-                    <p >เบอร์โทร : {user.user_phone}</p>
-                    <p>อายุ : {user.user_age}</p>
-                  </div>
-                ))) : (<p>ไม่พบข้อมูลผู้ใช้</p>)}
+        <div className='row'>
+            <div className='col-lg-7 mx-auto'>
+                {books.map((book) => (
+                    <div className="card mt-2 mx-auto p-4 bg-light" key={book.b_id}>
+                        <div className="text-left">
+                            <div className="card-body bg-light">
+                                <div className="container">
+                                    <div className="card col-12 ">
+                                        <div className='row'>
+                                            <div className="col-6 p-4">
+                                                <p>เลขการจอง : {book.b_id}</p>
+                                                {/* แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง */}
+                                                {users.length > 0 ? (
+                                                    users.map((user) => (
+                                                        <div key={user.id}>
+                                                            <p>ชื่อ-สกุล : {user.user_name} {user.user_lastname}</p>
+                                                            <p>เบอร์โทร : {user.user_phone}</p>
+                                                            <p>อายุ : {user.user_age}</p>
+                                                        </div>
+                                                    ))
+                                                ) : (
+                                                    <p>ไม่พบข้อมูลผู้ใช้</p>
+                                                )}
 
-              <p>วันที่จอง : {bookingDate}</p>
-              <p>บ้านเลขที่ : {book.h_id}</p>
-              {houses.length > 0 ? (
-                houses.map((house) => (
-                  // แสดงข้อมูลผู้ใช้ที่เกี่ยวข้องกับข้อมูลการจอง
-                  <div key={house.id}>
-                    <p>ขนาดพื้นที่ดิน : {house.land_area} ตารางวา </p>
-                    <p>แปลนบ้าน : {house.house_plan} </p>
-                    {/* <p>ยอดผ่อนดาว : {house.book_price} บาท</p> */}
-                    <NumericFormat
-                      value={house.book_price}
-                      allowLeadingZeros
-                      thousandSeparator=","
-                      displayType="text"
-                      renderText={(value) => <p> รวมเงินทั้งสิ้น : {value} บาท</p>}
-                    />
-                    <NumericFormat
-                      value={house.book_price}
-                      allowLeadingZeros
-                      thousandSeparator=","
-                      displayType="text"
-                      renderText={(value) => <p>ค่าจอง : {value} บาท</p>}
-                    />
-                    {/* <p>ค่าจอง : {house.book_price} บาท</p> */}
-                  </div>
-                ))) : (<p>ไม่พบข้อมูลผู้ใช้</p>)}
-
+                                                <p>วันที่จอง : {bookingDate}</p>
+                                                <p>บ้านเลขที่ : {book.h_id}</p>
+                                                {houses.length > 0 ? (
+                                                    houses.map((house) => (
+                                                        <div key={house.id}>
+                                                            <p>ขนาดพื้นที่ดิน : {house.land_area} ตารางวา </p>
+                                                            <p>แปลนบ้าน : {house.house_plan} </p>
+                                                            <NumericFormat
+                                                                value={house.book_price}
+                                                                allowLeadingZeros
+                                                                thousandSeparator=","
+                                                                displayType="text"
+                                                                renderText={(value) => <p> รวมเงินทั้งสิ้น : {value} บาท</p>}
+                                                            />
+                                                            <NumericFormat
+                                                                value={house.book_price}
+                                                                allowLeadingZeros
+                                                                thousandSeparator=","
+                                                                displayType="text"
+                                                                renderText={(value) => <p>ค่าจอง : {value} บาท</p>}
+                                                            />
+                                                        </div>
+                                                    ))
+                                                ) : (
+                                                    <p>ไม่พบข้อมูลผู้ใช้</p>
+                                                )}
+                                            </div>
+                                            <div className='col-6'>
+                                                {/* Other contents or empty space */}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                <br />
+                <button type="button" className="btn button09" onClick={generatePdf}>
+                    บันทึกเป็น PDF
+                </button>
             </div>
-          </div>
-        ))}
-      </div>
-      <br />
-      <button type="button" className="btn btn-primary" onClick={generatePdf}>
-        บันทึกเป็น PDF
-      </button>
+        </div>
+        <br />
     </div>
+</div>
+
   );
 };
 

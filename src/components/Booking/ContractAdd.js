@@ -186,7 +186,7 @@ const ContractAdd = () => {
                   <div className="row mt-3">
                     <div className="col-md-12">
                       <button type="button" className="btn button01 btn-send pt-2 btn-block" onClick={Contract}>
-                        ยืนนันการทำสัญญา
+                        ยืนยันการทำสัญญา
                       </button>
                     </div>
                   </div>

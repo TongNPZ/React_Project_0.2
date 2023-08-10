@@ -22,8 +22,7 @@ const ShowHousing = () => {
   }, []);
 
   const loadHouses = () => {
-    axios
-      .get('http://26.90.237.200:3000/admin/house/read')
+    axios.get('http://26.90.237.200:3000/admin/house/read')
       .then(response => {
         setHouses(response.data);
         response.data.forEach(house => {
@@ -35,8 +34,7 @@ const ShowHousing = () => {
   };
 
   const loadHouseTypes = () => {
-    axios
-      .get('http://26.90.237.200:3000/admin/house_zone/read')
+    axios.get('http://26.90.237.200:3000/admin/house_zone/read')
       .then(response => {
         setZones(response.data);
 

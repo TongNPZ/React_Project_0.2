@@ -43,7 +43,7 @@ const AddBill = () => {
 
   const AddBook = async () => {
 
-    if (!addHouseFK || !addNote || !addDate) {
+    if (!addHouseFK || !addDate) {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;
     }
@@ -62,15 +62,17 @@ const AddBill = () => {
     try {
       const response = await axios.post(House_API, data);
       alert('ส่งสำเร็จแล้ว');
-      // ทำการ navigate ไปยังหน้า Receipt พร้อมกับส่งค่า addedBookData ไปด้วย
-      navigate(`/Bill`); 
+      navigate(`/Bill`);
     } catch (error) {
       console.error(error);
       alert('ผิดพลาด');
     }
 
   };
-
+  const inSevenDays = new Date();
+  inSevenDays.setDate(inSevenDays.getDate() + 7);
+  // const maxDate = inSevenDays.toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
 
   return (
 
@@ -110,20 +112,22 @@ const AddBill = () => {
                 <div className="card mb-4 container">
                   <div className="mb-3">
                     <label htmlFor="setAddDate" className="form-label">
-                    &nbsp;&nbsp;ลงวันที่แจ้งชำระ
+                      <br />
+                      &nbsp;&nbsp;ลงวันที่แจ้งชำระ
                     </label>
                     <input
                       type="date"
                       className="form-control"
                       id="setAddDate"
                       value={addDate}
+                      min={today}
                       onChange={(e) => setAddDate(e.target.value)}
                     />
                   </div>
 
                   <div className="mb-3">
                     <label htmlFor="addNote" className="form-label">
-                    &nbsp;&nbsp;หมายเหตุ
+                      &nbsp;&nbsp;หมายเหตุ
                     </label>
                     <input
                       type="text"
@@ -138,7 +142,7 @@ const AddBill = () => {
 
                 <div className="text-center">
                   <button className="btn button09" onClick={() => AddBook()}>
-                  &nbsp;&nbsp;ส่ง&nbsp;&nbsp;
+                    &nbsp;&nbsp;ส่ง&nbsp;&nbsp;
                   </button>
                 </div>
                 <br />

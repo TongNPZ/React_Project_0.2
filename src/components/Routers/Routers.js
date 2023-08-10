@@ -28,12 +28,13 @@ import ReceiptCon from "../Receipt/ReceiptCon";
 import ReceiptRemain from "../Receipt/ReceiptRemain";
 
 import ContractDoc from "../Receipt/ContractDoc";
-import Bill from '../Bill/Bill';
+import AllBill from '../Bill/AllBill';
 import AddBill from '../Bill/AddBill';
 import ManageUsers from "../ManageUsers/ManageUsers";
 import UsePassEdit from "../User/UsePassEdit";
 import UserHouse from "../User/UserHouse";
 import User from "../User/User";
+import UserBill from "../Bill/UserBill";
 import AboutUs from '../AboutUS/AboutUs';
 import RootLayout from './Root';
 import Errorpage from './Error';
@@ -79,14 +80,15 @@ const router = createBrowserRouter([
             { path: '/ReceiptRemain/:Bid', element: <ReceiptRemain />},
         
             { path: '/ContractDoc/:Bid', element: <ContractDoc />},
-            { path: '/Bill', element: <Bill />},
+            { path: '/AllBill', element: <AllBill />},
             { path: '/UsePassEdit/:Uid', element: <UsePassEdit />},
             { path: '/AddBill', element: <AddBill />},
             { path: '/ManageUsers', element: <ManageUsers />},
             { path: '/AdminUsePassEdit/:Uid', element: <AdminUsePassEdit />},
             { path: '/User/:Uid', element: <User />},
+            { path: '/UserBill/:Uid', element: <UserBill />},
             { path: '/LoginForm', element: <LoginForm />},
-            { path: '/UserHouse', element: <UserHouse />},
+            { path: '/UserHouse/:Uid', element: <UserHouse />},
 
       ],
     },

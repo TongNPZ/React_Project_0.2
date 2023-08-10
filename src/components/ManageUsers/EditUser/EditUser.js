@@ -65,13 +65,13 @@ const EditUser = () => {
   };
 
   const Cancel = () => {
-    navigate(`/Housing`);
+    navigate(`/ManageUsers`);
   };
 
 
   return (
     <div className="container">
-      <h1>แก้ไขข้อมูลผู้ลูกค้า</h1>
+      <h1>แก้ไขข้อมูลลูกค้า</h1>
 
       <div className=" row ">
         <div className="col-lg-7 mx-auto ">

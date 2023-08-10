@@ -20,11 +20,11 @@ const AdminProfile = () => {
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center mb-4">ข้อมูลผู้จัดการ</h1>
+            <h1 className="text-center mb-4">ข้อมูลโครงการ</h1>
             <div className="row d-flex justify-content-center">
                 {profile.map((val, idx) => (
-                    <div className="col-lg-6">
-                        <div className="card mb-4" key={idx}>
+                    <div className="col-lg-8">
+                        <div className="card mb-4 box02" key={idx}>
                             <div className="card-body text-center">
                                 <div className="d-flex justify-content-end">
                                     {/* Insert any content you want to display in this section */}
@@ -35,14 +35,17 @@ const AdminProfile = () => {
                                     alt={`House ${val.he_id}`}
                                     style={{ width: "400px", height: "200px" }}
                                 />
-                                <h5>โครงการ {val.name}</h5>
-                                <p>ชื่อบริษัท : {val.company}</p>
-                                <p>ชื่อผู้จัดการ : {val.manager_name} {val.manager_lastname}</p>
-                                <p>ที่อยู่โครงการ : {val.address}</p>
-                                <p>เบอร์โทร : {val.phone}</p>
-                                <p>อัตตราผ่อน : {val.down_rate} %</p>
-                                <p>เงินส่วนกลาง : {val.common_money}</p>
-
+                                  <h5>โครงการ {val.name}</h5>
+                                <div className='card text-left p-4'>
+                                   
+                                    <p>ชื่อบริษัท : {val.company}</p>
+                                    <p>ชื่อผู้จัดการ : {val.manager_name} {val.manager_lastname}</p>
+                                    <p>ที่อยู่โครงการ : {val.address}</p>
+                                    <p>เบอร์โทร : {val.phone}</p>
+                                    <p>อัตตราผ่อน : {val.down_rate} %</p>
+                                    {/* <p>เงินส่วนกลาง : {val.common_money}</p> */}
+                                </div>
+                                <br/>
                                 {Auth.isLoggedIn && Auth.status == 1 && (
                                     <div className='row mt-3'>
                                         <div className='col-6'>
