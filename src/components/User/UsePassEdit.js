@@ -8,17 +8,16 @@ const EditUser = () => {
   const User_API = "http://26.90.237.200:3000/user/edit-user";
   const navigate = useNavigate();
   const { Uid } = useParams();
-  const [newUsername, setNewUsername] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
   const updateUser = async () => {
     const data = {
       id: Uid,
-      newUsername: newUsername,
+      newEmail: newEmail,
       newPassword: newPassword,
     };
-    // console.log(data)
-    // ถามผู้ใช้ก่อนทำการแก้ไข
+
     const confirmUpdate = window.confirm("คุณต้องการทำการแก้ไขข้อมูลหรือไม่?");
 
     if (confirmUpdate) {
@@ -26,19 +25,19 @@ const EditUser = () => {
         const response = await axios.patch(User_API, data);
         console.log(response.data);
 
-        // แจ้งเตือนเมื่อแก้ไขเสร็จสิ้น
         window.alert("แก้ไขข้อมูลสำเร็จ");
-        // navigate("/User/:Uid");
         localStorage.setItem('loggedIn', 'false');
         localStorage.removeItem('token');
         Auth.setIsLoggedIn(false);
         navigate('/');
-
+        // console.log(response.data);
       } catch (error) {
         console.error(error);
+        const errorMessage = error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "เกิดข้อผิดพลาดในการแก้ไขข้อมูล";
 
-        // แจ้งเตือนเมื่อเกิดข้อผิดพลาดในการแก้ไขข้อมูล
-        window.alert("เกิดข้อผิดพลาดในการแก้ไขข้อมูล");
+        window.alert(errorMessage);
         navigate("/error");
       }
     }
@@ -55,8 +54,8 @@ const EditUser = () => {
             <input
               type="username"
               className="form-control"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
             />
           </div>
           <br />

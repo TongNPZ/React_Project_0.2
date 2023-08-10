@@ -155,7 +155,7 @@ const HousingAdd = () => {
                                 id="addLandArea"
                                 maxLength="11"
                                 value={addLandArea}
-                                onChange={e => setAddLandArea(parseInt(e.target.value))}
+                                onChange={e => setAddLandArea(e.target.value)}
                               />
                             </div>
                           </div>
@@ -168,7 +168,7 @@ const HousingAdd = () => {
                                 id="addArea"
                                 maxLength="11"
                                 value={addArea}
-                                onChange={e => setAddArea(parseInt(e.target.value))}
+                                onChange={e => setAddArea(e.target.value)}
                               />
                             </div>
                           </div>
