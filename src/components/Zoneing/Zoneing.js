@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Login/AuthContext';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
@@ -31,11 +31,11 @@ const Zoneing = () => {
       const data = { id: house.hz_id };
       console.log(data);
       axios.delete('http://26.90.237.200:3000/admin/house_zone/delete/', {
-          data: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+        data: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
         .then(response => {
           alert('ลบโซนสำเร็จ');
           loadHouseTypes();
@@ -54,31 +54,31 @@ const Zoneing = () => {
   return (
     <div className="container">
       <h1>โซน</h1>
-      
-      {Auth.isLoggedIn && Auth.status == 1 && (
+
+      {Auth.isLoggedIn && Auth.status === 1 && (
         <div className="d-flex justify-content-end">
           <button className="btn button06" onClick={() => { navigate('/ZoneAdd'); }}>  &nbsp;&nbsp;เพิ่ม&nbsp;&nbsp; </button>
         </div>
       )}
 
-      <br/>
+      <br />
       <div className="row">
         {zones.map((zone, idx) => (
           <div className="col-4" key={idx}>
             <div className="card box01" >
               <div className="card-body">
                 <h5 className="card-title">โซน {zone.name}</h5>
-                
-                {Auth.isLoggedIn && Auth.status == 1 && (
+
+                {Auth.isLoggedIn && Auth.status === 1 && (
                   <div className="mt-3 d-flex">
-                   
-                  
+
+
                     <button className="btn button010" onClick={() => handleDeleteClick(zone)}>
-                     <MdDelete size={20} /> ลบ
+                      <MdDelete size={20} /> ลบ
                     </button>
 
                     <button className="btn button09" onClick={() => ZoneEdit(zone.hz_id)}>
-                    <AiFillEdit size={20}  /> แก้ไข
+                      <AiFillEdit size={20} /> แก้ไข
                     </button>
 
                   </div>
