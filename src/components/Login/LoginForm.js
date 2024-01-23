@@ -1,56 +1,88 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from './AuthContext';
-import loginUser from './Login';
 import { useNavigate } from 'react-router-dom';
+import GetRequst from '../../ConfigApi';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const LoginForm = () => {
-  const { status, isLoggedIn, setIsLoggedIn, setStatus, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const MySwal = withReactContent(Swal)
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const statusRedirects = (role) => {
+    if (role === 1) {
+      navigate('/home-page');
+    } else if (role === 2) {
+      navigate('/home-page');
+    } else if (role === 3) {
+      navigate('/home-page');
+    } else {
+      MySwal.fire({
+        icon: "error",
+        title: "ปฏิเสธการเข้าถึง",
+        text: "คุณไม่มีสิทธิ์เข้าใช้งานระบบ",
+      }).then(() => {
+        navigate('/');
+      });
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await loginUser(username, password, setStatus, setIsLoggedIn);
-    // console.log(response)
-    if (response.auth) {
-      localStorage.setItem('loggedIn', 'true');
-      localStorage.setItem('user', username);
-      setUser(username)
+    try {
+      var raw = {
+        "userEmail": email,
+        "userPassword": password
+      };
 
-      if ([1, 2, 3].includes(response.status)) {
-        navigate('/Housing');
+      const response = await GetRequst('http://26.90.237.200:3000/login', 'POST', raw)
 
-      } else {
-        navigate('/'); // เปลี่ยน '/SomeOtherPage' ไปยัง path ที่คุณต้องการให้ผู้ใช้ไปถ้า status ไม่ใช่ 1, 2, 3
+      if (response.message === 'login success') {
+        const { id, statusAuth, token } = response;
+        localStorage.setItem('id', id);
+        localStorage.setItem('statusAuth', statusAuth);
+        localStorage.setItem('token', token);
+
+        statusRedirects(response.statusAuth);
+
+        MySwal.fire({
+          icon: "success",
+          title: "เข้าสู่ระบบสำเร็จ",
+        });
       }
-    } else {
-      localStorage.setItem('loggedIn', 'false');
-      navigate('/');
+
+    } catch (error) {
+      console.log(error);
+
+      MySwal.fire({
+        icon: "error",
+        title: "เข้าสู่ระบบล้มเหลว",
+        text: "กรุณาตรวจสอบข้อมูลและเข้าสู่ระบบใหม่อีกครั้ง",
+      });
     }
   };
 
   return (
-
     <div className=" login-container">
       <div className="box">
         <h2 className="text-center">เข้าสู่ระบบ</h2>
         <form onSubmit={handleSubmit} className="login-form text-left">
-          <br/>
           <div className="mb-4">
-            <label htmlFor="username" className="form-label">&nbsp;&nbsp;ชื่อบัญชีผู้ใช้</label>
+            <label htmlFor="email" className="form-label">อีเมล</label>
             <input
               type="text"
               className="form-control"
-              id="username"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="form-label">&nbsp;&nbsp;รหัสผ่าน</label>
+            <label htmlFor="password" className="form-label">รหัสผ่าน</label>
             <input
               type="password"
               className="form-control"
@@ -66,7 +98,6 @@ const LoginForm = () => {
         </form>
       </div>
     </div>
-
   );
 };
 

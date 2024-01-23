@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
-// import { AuthContext } from '../Login/AuthContext';
-// import { useNavigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import GetRequst from '../../ConfigApi';
+import ModalUserEdit from './ModalUserEdit';
 
 const User = () => {
-  // const Auth = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
-  // const { Uid } = useParams();
   const navigate = useNavigate();
-
-  // const data = {
-  //   email: Uid
-  // };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -25,8 +18,7 @@ const User = () => {
     }
 
     fetchUser();
-  }, []);  
-
+  }, []);
 
   // const statusUser = (status_authen) => {
   //   switch (status_authen) {
@@ -40,16 +32,15 @@ const User = () => {
   // };
 
   return (
-    <div className="container mt-4 d-flex justify-content-center align-items-center" >
-      <div className="row w-100">
-        <div className="col-12 text-center">
-          <h1>ข้อมูลผู้ใช้</h1>
-        </div>
-        <br/> <br/> <br/>
-        {userData.map((user) => (
-          <div className="col-12 d-flex justify-content-center">
-            <div className="card box bg-light" key={user.user_id} style={{ maxWidth: '600px' }}>
-              <div className='card-body '>
+    <div className="container" >
+      <div className="text-center mt-5">
+        <h1>ข้อมูลผู้ใช้</h1>
+      </div>
+      <div className='row'>
+        <div className='card-group'>
+          {userData.map((user) => (
+            <div className="card box bg-light mt-5">
+              <div className='card-body'>
                 <div className="card text-left p-4">
                   <br />
                   <p>ชื่อผู้ใช้ : {user.user_email}</p>
@@ -66,15 +57,16 @@ const User = () => {
                 </div>
                 <br />
                 <br />
-                  <div className="d-flex justify-content-center">
-                    <button className="btn button09" onClick={() => { navigate(`/UsePassEdit/${user.user_id}`); }}>
-                      แก้ไขรหัสผ่าน
-                    </button>
-                  </div>
+                <div className="text-center">
+                  <ModalUserEdit />
+                  <button className="btn button09" onClick={() => { navigate(`/UsePassEdit/${user.user_id}`); }}>
+                    แก้ไขรหัสผ่าน
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
 
