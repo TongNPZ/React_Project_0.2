@@ -10,15 +10,17 @@ const GetRequst = async (host, method, body) => {
             redirect: 'follow'
         };
 
-        if(body !== null) {
-            if(body instanceof FormData) {
+        if (body !== null) {
+            if (body instanceof FormData) {
                 myHeaders.delete("Content-Type")
                 requestOptions.body = body
             } else {
                 requestOptions.body = JSON.stringify(body)
             }
         }
+
         const response = await fetch(host, requestOptions)
+
         if (!response.ok) {
             throw new Error('Network response was not OK!')
         }
