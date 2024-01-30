@@ -2,6 +2,7 @@ const GetRequst = async (host, method, body) => {
     try {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
 
         var requestOptions = {
             method: method,
@@ -20,7 +21,7 @@ const GetRequst = async (host, method, body) => {
         }
 
         const response = await fetch(host, requestOptions)
-
+        
         if (!response.ok) {
             throw new Error('Network response was not OK!')
         }

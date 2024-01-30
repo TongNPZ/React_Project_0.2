@@ -1,59 +1,59 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import GetRequst from '../../ConfigApi';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const statusRedirects = (role) => {
-    if (role === 1) {
-      navigate('/home-page');
-    } else if (role === 2) {
-      navigate('/home-page');
-    } else if (role === 3) {
-      navigate('/home-page');
+  const StatusRedirects = (status) => {
+    if (status === 1) {
+      navigate('/');
+    } else if (status === 2) {
+      navigate('/');
+    } else if (status === 3) {
+      navigate('/');
     } else {
       MySwal.fire({
         icon: "error",
         title: "ปฏิเสธการเข้าถึง",
         text: "คุณไม่มีสิทธิ์เข้าใช้งานระบบ",
       }).then(() => {
-        navigate('/');
+        navigate('/login');
       });
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       var raw = {
         "userEmail": email,
         "userPassword": password
       };
 
-      const response = await GetRequst('http://26.90.237.200:3000/login', 'POST', raw)
-
-      if (response.message === 'login success') {
-        const { id, statusAuth, token } = response;
+      const result = await GetRequst('http://26.90.237.200:3000/login', 'POST', raw);
+      
+      if (result.message === 'login success') {
+        const { id, statusAuth, token } = result;
         localStorage.setItem('id', id);
         localStorage.setItem('statusAuth', statusAuth);
         localStorage.setItem('token', token);
 
-        statusRedirects(response.statusAuth);
+        StatusRedirects(statusAuth);
 
         MySwal.fire({
           icon: "success",
           title: "เข้าสู่ระบบสำเร็จ",
+          showConfirmButton: false,
+          timer: 1500
         });
       }
-
     } catch (error) {
       console.log(error);
 
