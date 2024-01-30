@@ -15,7 +15,7 @@ const NavBar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await GetRequst(`http://26.90.237.200:3000/admin`, 'GET', null);
+        const result = await GetRequst(`http://26.90.237.200:3000/admin/house_estate`, 'GET', null);
         setProfile(result);
       } catch (error) {
         console.log('Error feching data: ', error);
