@@ -21,12 +21,12 @@ const GetRequst = async (host, method, body) => {
         }
 
         const response = await fetch(host, requestOptions)
-        
+
         if (!response.ok) {
             throw new Error('Network response was not OK!')
+        } else {
+            return response.json()
         }
-
-        return response.json()
 
     } catch (error) {
         console.error('Error Calling API: ', error)
