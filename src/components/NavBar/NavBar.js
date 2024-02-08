@@ -16,7 +16,7 @@ const NavBar = () => {
     const fetchData = async () => {
       try {
         const result = await GetRequst(`http://26.90.237.200:3000/admin/house_estate`, 'GET', null);
-        setProfile(result);
+        setProfile(result.data);
       } catch (error) {
         console.log('Error feching data: ', error);
       }
